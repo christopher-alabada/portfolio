@@ -1,0 +1,46 @@
+@import-normalize;
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400&display=swap');
+
+
+body {
+  margin: 0px;
+  font-family: 'Lato', 'Sans Serif';
+  font-weight: 300;
+  font-size: 1.4em;
+  color: #333;
+  /*height: 100vh;*/
+  background-color: #eee;
+}
+
+h1 {
+  font-style: italic;
+  font-size: 1.5em;
+  padding-top: 7px;
+  /*font-weight: normal;*/
+}
+
+h2, h3, h4, h5, h6 {
+  font-style: italic;
+}
+
+a {
+  /*color: #DF4747;*/
+  color: #000;
+  text-decoration: none;
+}
+
+a:hover {
+  /*color: #DF4747;*/
+  color: #000;
+  text-decoration: underline;
+}
+
+.main-content {
+  position: relative;
+  margin: 150px auto;
+  padding: 0 150px;
+}
+
+.bold {
+  font-weight: bold;
+}

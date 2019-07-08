@@ -1,6 +1,6 @@
 version: '3'
 services:
-  frontend:
+  react-app:
     build:
       context: .
       dockerfile: Dockerfile.dev

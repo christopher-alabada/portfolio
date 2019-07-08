@@ -1,0 +1,95 @@
+import React from 'react';
+
+import '../../styles/Home.css';
+import email from '../../images/email.png';
+import linkedin from '../../images/linkedin.png';
+import github from '../../images/github.png';
+import marker from '../../images/marker.png';
+
+import php from '../../images/php.png';
+import ruby from '../../images/ruby.png';
+import javascript from '../../images/javascript.png';
+import python from '../../images/python.png';
+import rails from '../../images/rails.png';
+import react from '../../images/react.png';
+import vue from '../../images/vue.png';
+import mysql from '../../images/mysql.png';
+import graphql from '../../images/graphql.png';
+
+
+const Home = () => {
+  return(
+    <div className="main-content">
+      <div className="top-content">
+        <div className="home-intro">
+          <h2>Hello, I'm Chris!</h2>
+          <p>
+            I'm a Full Stack Developer with over 10 years experience as both a
+            system administrator and web developer. I specialize in PHP, Ruby on Rails,
+            and JavaScript. Currently living in Tokyo.
+          </p>
+        </div>
+        <div className="home-contact">
+          <div>
+            <div><img src={marker} className="icon" /></div>
+            <div><a>Tokyo, Japan</a></div>
+          </div>
+          <div>
+            <div><img src={email} className="icon" /></div>
+            <div><a>christopher.alabada@gmail.com</a></div>
+          </div>
+          <div>
+            <div><img src={linkedin} className="icon" /></div>
+            <div><a>christopher.alabada</a></div>
+          </div>
+          <div>
+            <div><img src={github} className="icon" /></div>
+            <div><a>christopher.alabada</a></div>
+          </div>
+        </div>
+      </div>
+
+      <h2>Skills</h2>
+      <div className="home-skills">
+        <div>
+          <div><img src={php} className="icon-skill" /></div>
+          <div>PHP</div>
+        </div>
+        <div>
+          <div><img src={ruby} className="icon-skill" /></div>
+          <div>Ruby</div>
+        </div>
+        <div>
+          <div><img src={javascript} className="icon-skill" /></div>
+          <div>JavaScript</div>
+        </div>
+        <div>
+          <div><img src={python} className="icon-skill" /></div>
+          <div>Python</div>
+        </div>
+        <div>
+          <div><img src={rails} className="icon-skill" /></div>
+          <div>Rails</div>
+        </div>
+        <div>
+          <div><img src={react} className="icon-skill" /></div>
+          <div>React</div>
+        </div>
+        <div>
+          <div><img src={vue} className="icon-skill" /></div>
+          <div>Vue</div>
+        </div>
+        <div>
+          <div><img src={mysql} className="icon-skill" /></div>
+          <div>MySQL</div>
+        </div>
+        <div>
+          <div><img src={graphql} className="icon-skill" /></div>
+          <div>GraphQL</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Home;

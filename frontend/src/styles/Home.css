@@ -1,0 +1,43 @@
+.icon {
+  width: 38px;
+  margin-right: 10px;
+}
+
+.main-content {
+  margin-top: 90px;
+  padding: 0 50px;
+}
+
+.top-content {
+  display: flex;
+}
+
+.home-intro {
+  width: 66%;
+}
+
+.home-contact {
+  padding-top: 45px;
+}
+
+.home-contact div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 7px;
+}
+
+.home-skills {
+  display: flex;
+  font-weight: 300;
+}
+
+.home-skills div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 7px;
+  margin-right: 10px;
+}
+
+.icon-skill {
+  width: 20px;
+}

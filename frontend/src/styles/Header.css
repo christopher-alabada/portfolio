@@ -1,0 +1,27 @@
+.header {
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: calc(100vw - 100px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  border-bottom: 1px solid #333;
+  padding: 0 50px;
+  background-color: #fff;
+  z-index: 10;
+}
+
+.header-menu {
+  display: flex;
+  align-items: center;
+  font-size: 1.1em;
+  font-weight: 300;
+}
+
+.header-menu div {
+  padding: 10px;
+  margin: 10px;
+  vertical-align: middle;
+}
