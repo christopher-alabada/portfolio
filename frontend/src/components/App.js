@@ -4,7 +4,7 @@ import React from 'react';
 class App extends React.Component {
   render() {
     return(
-      <div>Hi from App!</div>
+      <div>Hi from Docker App!!</div>
     );
   }
 }
