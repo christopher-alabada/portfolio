@@ -1,0 +1,10 @@
+FROM mongo:4.0
+COPY ./initdb.d/ /docker-entrypoint-initdb.d/
+
+FROM node:alpine
+WORKDIR /app
+COPY ./server/package.json ./
+RUN yarn
+COPY ./server ./
+
+CMD ["yarn", "start"]

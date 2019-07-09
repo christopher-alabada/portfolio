@@ -1,0 +1,27 @@
+# Development docker-compose file
+version: '3'
+services:
+  # Server
+  database:
+    build: ./server
+    restart: always
+    volumes:
+      - ./server/data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGODB_DATABASE}
+    # ports:
+    #   - "27017:27017"
+
+
+  # Frontend
+  react-app:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules
+      - ./frontend:/app
