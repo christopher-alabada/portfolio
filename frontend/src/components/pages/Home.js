@@ -4,9 +4,8 @@ import '../../styles/Home.css';
 import email from '../../images/email.png';
 import linkedin from '../../images/linkedin.png';
 import github from '../../images/github.png';
-import marker from '../../images/marker.png';
 
-import php from '../../images/php.png';
+
 import ruby from '../../images/ruby.png';
 import javascript from '../../images/javascript.png';
 import python from '../../images/python.png';
@@ -24,14 +23,14 @@ const Home = () => {
         <div className="home-intro">
           <h2>Hello, I'm Chris!</h2>
           <p>
-            I'm a Full Stack Developer with over 10 years experience as both a
+            test I'm a Full Stack Developer with over 10 years experience as both a
             system administrator and web developer. I specialize in PHP, Ruby on Rails,
             and JavaScript. Currently living in Tokyo.
           </p>
         </div>
         <div className="home-contact">
           <div>
-            <div><img src={marker} className="icon" /></div>
+            <div><img src={require('../../images/marker.png')} className="icon" /></div>
             <div><a>Tokyo, Japan</a></div>
           </div>
           <div>
@@ -52,7 +51,7 @@ const Home = () => {
       <h2>Skills</h2>
       <div className="home-skills">
         <div>
-          <div><img src={php} className="icon-skill" /></div>
+          <div><img src={require('../../images/php.png')} className="icon-skill" /></div>
           <div>PHP</div>
         </div>
         <div>
