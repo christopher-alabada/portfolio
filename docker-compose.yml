@@ -1,9 +1,11 @@
 # Development docker-compose file
 version: '3'
 services:
-  # Server
+  # Database
   database:
-    build: ./server
+    build:
+      context: ./server
+      dockerfile: Dockerfile_mongodb
     restart: always
     volumes:
       - ./server/data:/data/db
@@ -11,17 +13,37 @@ services:
       MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ROOT_PASSWORD}
       MONGO_INITDB_DATABASE: ${MONGODB_DATABASE}
-    # ports:
-    #   - "27017:27017"
+    ports:
+      - "27017:27017"
 
+  # Server
+  node-app:
+    restart: on-failure
+    build:
+      context: ./server
+      dockerfile: Dockerfile_node
+    depends_on:
+      - database
+    volumes:
+      - /app/node_modules
+      - ./server:/app
+    links:
+      - database
+    environment:
+      WAIT_HOSTS: database:27017
+    ports:
+      - "5000:5000"
 
   # Frontend
   react-app:
     build:
       context: ./frontend
       dockerfile: Dockerfile.dev
-    ports:
-      - "3000:3000"
+    depends_on:
+      - database
+      - node-app
     volumes:
       - /app/node_modules
       - ./frontend:/app
+    ports:
+      - "3000:3000"
