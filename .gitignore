@@ -1,7 +1,9 @@
 .DS_Store
+_notes.txt
 
 # MongoDB data files
 server/data/
+data/
 
 # vim files
 *~

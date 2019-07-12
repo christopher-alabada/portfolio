@@ -23,7 +23,7 @@ const Home = () => {
         <div className="home-intro">
           <h2>Hello, I'm Chris!</h2>
           <p>
-            test I'm a Full Stack Developer with over 10 years experience as both a
+            I'm a Full Stack Developer with over 10 years experience as both a
             system administrator and web developer. I specialize in PHP, Ruby on Rails,
             and JavaScript. Currently living in Tokyo.
           </p>
