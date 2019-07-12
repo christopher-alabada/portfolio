@@ -17,6 +17,7 @@ const mongooseOptions = {
 
 mongoose.connect(mongoURI, mongooseOptions).then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log("MongoDB Error: \n", err));
+mongoose.set('useCreateIndex', true);
 
 const port = process.env.PORT || 5000;
 

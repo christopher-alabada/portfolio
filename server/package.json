@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "main": "server.js",
   "license": "MIT",
+  "scripts": {
+    "test": "mocha --exit"
+  },
   "dependencies": {
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
+    "mocha": "^6.1.4",
     "mongoose": "^5.6.3",
     "nodemon": "^1.19.1"
   }

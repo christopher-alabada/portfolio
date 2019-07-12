@@ -9,6 +9,6 @@ ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.5.1/wait
 RUN chmod +x /wait
 
 ## Launch the wait tool and then your application
-CMD /wait && yarn run start
+CMD /wait && yarn start
 
 # CMD ["yarn", "start"]
