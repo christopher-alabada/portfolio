@@ -21,7 +21,6 @@ import ubuntu from '../../images/ubuntu.png';
 import rackspace from '../../images/rackspace.png';
 import aws from '../../images/aws.png';
 import heroku from '../../images/heroku.png';
-import digitalocean from '../../images/digitalocean.png';
 
 
 
