@@ -24,4 +24,8 @@ after((done) => {
   mongoose.connection.collections.skills.drop(() => {
     done();
   });
+
+  mongoose.connection.collections.pages.drop(() => {
+    done();
+  });
 });

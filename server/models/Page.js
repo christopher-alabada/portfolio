@@ -4,8 +4,9 @@ const Schema = mongoose.Schema;
 const PageSchema = new Schema({
   name: {
     type: String,
-    required: true,
-    index: true
+    required: [true, 'Page name is required.'],
+    index: true,
+    unique: true
   },
   title: {
     type: String
