@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 // Routes
 const pages = require('./routes/api/pages');
+const projects = require('./routes/api/projects');
 
 require('dotenv').config();
 const mongoURI = "mongodb://database:" + process.env.MONGODB_PORT + "/" + process.env.MONGODB_DATABASE
@@ -24,6 +25,7 @@ mongoose.set('useCreateIndex', true);
 
 // Routes
 app.use('/api/pages', pages);
+app.use('/api/projects', projects);
 
 const port = process.env.PORT || 5000;
 

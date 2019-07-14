@@ -37,9 +37,9 @@ describe('Projects API', () => {
   });
 
 
-  it.only('should GET /api/projects/Project+Name', (done) => {
+  it('should GET /api/projects/Project+Name', (done) => {
     chai.request('http://localhost:5000')
-      .get('/api/projects/Project+Name')
+      .get('/api/projects/Project%20Name')
       .end((err, res) => {
         if (err) {
           console.log(err);
