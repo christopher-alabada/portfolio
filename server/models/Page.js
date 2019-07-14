@@ -16,4 +16,4 @@ const PageSchema = new Schema({
   }
 });
 
-module.exports = Page = mongoose.model('page', PageSchema);
+module.exports = Page = mongoose.model('Page', PageSchema);

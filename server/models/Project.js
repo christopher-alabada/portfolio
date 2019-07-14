@@ -4,8 +4,9 @@ const Schema = mongoose.Schema;
 const ProjectSchema = new Schema({
   name: {
     type: String,
-    required: true,
-    index: true
+    required: [true, 'Project name is required.'],
+    index: true,
+    unique: true
   },
   description: {
     type: String
@@ -16,9 +17,10 @@ const ProjectSchema = new Schema({
   repo: {
     type: String
   },
-  skills: {
-    type: mongoose.Schema.Types.ObjectId, ref: 'Skills'
-  }
+  skills: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Skill'
+  }]
 });
 
-module.exports = Project = mongoose.model('project', ProjectSchema);
+module.exports = Project = mongoose.model('Project', ProjectSchema);

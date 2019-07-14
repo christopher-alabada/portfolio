@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+const Page = require('../models/Page');
+const Skill = require('../models/Skill');
+const Project = require('../models/Project');
 
 mongoose.Promise = global.Promise;
 require('dotenv').config();
@@ -13,7 +16,10 @@ before((done) => {
   };
   mongoose.connect(mongoURI, mongooseOptions);
   mongoose.connection
-    .once('open', () => { done(); })
+    .once('open', () => {
+      Promise.all([Page.init(), Skill.init(), Project.init()])
+        .then(() => done());
+    })
     .on('error', (error) => {
       console.warn('Warning', error);
     });
@@ -21,11 +27,10 @@ before((done) => {
 });
 
 after((done) => {
-  mongoose.connection.collections.skills.drop(() => {
-    done();
-  });
-
-  mongoose.connection.collections.pages.drop(() => {
-    done();
-  });
+  Promise.all([
+    mongoose.connection.collections.pages.drop(),
+    mongoose.connection.collections.skills.drop(),
+    mongoose.connection.collections.projects.drop()
+  ])
+    .then(() => { done() });
 });

@@ -4,7 +4,7 @@
   "main": "server.js",
   "license": "MIT",
   "scripts": {
-    "test": "mocha --exit"
+    "test": "mocha test/tests.js --exit"
   },
   "dependencies": {
     "dotenv": "^8.0.0",

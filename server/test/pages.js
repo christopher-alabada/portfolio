@@ -2,11 +2,16 @@ const assert = require('assert');
 const Page = require('../models/Page');
 
 
-describe('Pages model', () => {
+describe('Page model', () => {
   const page = new Page({
     name: "about",
     title: "About Me",
     content: "Lorem ipsum forever!"
+  });
+
+  after((done) => {
+    Page.deleteMany({})
+      .then(() => done());
   });
 
   it('can save a page.', (done) => {

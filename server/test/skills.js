@@ -1,9 +1,14 @@
 const assert = require('assert');
-const { Skill, SkillSchema } = require('../models/Skill');
+const Skill = require('../models/Skill');
 
 
-describe('Skills model', () => {
+describe('Skill model', () => {
   const php = new Skill({ name: 'php', image: 'php.png' });
+
+  after((done) => {
+    Skill.deleteMany({})
+      .then(() => done());
+  });
 
   it('can save a skill', (done) => {
     Skill.init()
