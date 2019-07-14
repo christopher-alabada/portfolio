@@ -45,7 +45,7 @@ describe('Pages API', () => {
       .then(() => done());
   });
 
-  it.only('should GET /api/pages/about', (done) => {
+  it('should GET /api/pages/about', (done) => {
     chai.request('http://localhost:5000')
       .get('/api/pages/about')
       .end((err, res) => {

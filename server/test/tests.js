@@ -4,3 +4,4 @@ require('./models/pages');
 require('./models/projects');
 
 require('./api/pages');
+require('./api/projects');

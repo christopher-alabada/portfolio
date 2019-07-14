@@ -4,18 +4,16 @@ const Project = require('../../models/Project');
 
 
 describe('Project model', () => {
-  let project, php, mysql;
-
   before((done) => {
-    project = new Project({
+    const project = new Project({
       name: 'Project Name',
       description: 'This project is totally tubular',
       link: 'http://tubular.com',
       repo: 'project_name'
     });
 
-    php = new Skill({name: 'php', image: 'php.png'});
-    mysql = new Skill({name: 'mysql', image: 'mysql.png'});
+    const php = new Skill({name: 'php', image: 'php.png'});
+    const mysql = new Skill({name: 'mysql', image: 'mysql.png'});
     
     project.skills.push(php);
     project.skills.push(mysql);
@@ -25,7 +23,10 @@ describe('Project model', () => {
   });
 
   after((done) => {
-    Project.deleteMany({})
+    Promise.all([
+      Project.deleteMany({}),
+      Skill.deleteMany({})  
+    ])
       .then(() => done());
   });
 
