@@ -1,7 +1,7 @@
 FROM node:alpine
 WORKDIR /app
 COPY ./package.json ./
-RUN yarn
+RUN yarn install --production=false
 COPY . .
 
 ## Add the wait script to the image
@@ -10,5 +10,3 @@ RUN chmod +x /wait
 
 ## Launch the wait tool and then your application
 CMD /wait && yarn start
-
-# CMD ["yarn", "start"]

@@ -1,6 +1,6 @@
 const assert = require('assert');
-const Skill = require('../models/Skill');
-const Project = require('../models/Project');
+const Skill = require('../../models/Skill');
+const Project = require('../../models/Project');
 
 
 describe('Project model', () => {
@@ -33,7 +33,6 @@ describe('Project model', () => {
     Project.findOne({name: 'Project Name'})
       .populate('skills')
       .then((proj) => {
-        console.log(proj.skills[0].name);
         assert(proj.name === 'Project Name');
         assert(proj.description === 'This project is totally tubular');
         assert(proj.link === 'http://tubular.com');

@@ -1,6 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
+// Routes
+const pages = require('./routes/api/pages');
+
 require('dotenv').config();
 const mongoURI = "mongodb://database:" + process.env.MONGODB_PORT + "/" + process.env.MONGODB_DATABASE
 console.log(mongoURI);
@@ -18,6 +21,9 @@ const mongooseOptions = {
 mongoose.connect(mongoURI, mongooseOptions).then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log("MongoDB Error: \n", err));
 mongoose.set('useCreateIndex', true);
+
+// Routes
+app.use('/api/pages', pages);
 
 const port = process.env.PORT || 5000;
 

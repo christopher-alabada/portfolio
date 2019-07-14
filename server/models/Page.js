@@ -13,7 +13,11 @@ const PageSchema = new Schema({
   },
   content: {
     type: String
-  }
+  },
+  skills: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Skill'
+  }]
 });
 
 module.exports = Page = mongoose.model('Page', PageSchema);

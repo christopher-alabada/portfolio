@@ -25,8 +25,8 @@ services:
     depends_on:
       - database
     volumes:
-      - /app/node_modules
       - ./server:/app
+      - /app/node_modules
     links:
       - database
     environment:
@@ -43,7 +43,7 @@ services:
       - database
       - node-app
     volumes:
-      - /app/node_modules
       - ./frontend:/app
+      - /app/node_modules
     ports:
       - "3000:3000"

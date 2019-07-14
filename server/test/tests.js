@@ -1,4 +1,6 @@
 require('./test_helper');
-require('./skills');
-require('./pages');
-require('./projects');
+// require('./models/skills');
+require('./models/pages');
+// require('./models/projects');
+
+// require('./api/pages');

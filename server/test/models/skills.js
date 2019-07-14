@@ -1,5 +1,5 @@
 const assert = require('assert');
-const Skill = require('../models/Skill');
+const Skill = require('../../models/Skill');
 
 
 describe('Skill model', () => {
