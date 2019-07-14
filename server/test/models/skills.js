@@ -3,7 +3,7 @@ const Skill = require('../../models/Skill');
 
 
 describe('Skill model', () => {
-  const php = new Skill({ name: 'php', image: 'php.png' });
+  const php = new Skill({ name: 'php', category: 'language', image: 'php.png' });
 
   after((done) => {
     Skill.deleteMany({})
@@ -18,6 +18,7 @@ describe('Skill model', () => {
             const phpquery = Skill.findOne({name: "php"});
             phpquery.exec((err, skill) => {
               assert(skill.name === 'php');
+              assert(skill.category === 'language');
               assert(skill.image === 'php.png');
               done();
             });

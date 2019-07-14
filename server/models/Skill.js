@@ -8,6 +8,9 @@ const SkillSchema = new Schema({
     index: true,
     unique: true
   },
+  category: {
+    type: String
+  },
   image: {
     type: String
   }
