@@ -27,7 +27,10 @@ describe('Page model', () => {
 
   // After tests, deleteMany so we don't lose indexes
   after((done) => {
-    Page.deleteMany({})
+    Promise.all([
+      Page.deleteMany({}),
+      Skill.deleteMany({})
+    ])
       .then(() => done());
   });
 
