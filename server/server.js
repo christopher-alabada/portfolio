@@ -1,32 +1,27 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-// Routes
-const pages = require('./routes/api/pages');
-const projects = require('./routes/api/projects');
-
+// get .env variables
 require('dotenv').config();
-const mongoURI = "mongodb://database:" + process.env.MONGODB_PORT + "/" + process.env.MONGODB_DATABASE
-console.log(mongoURI);
 
-const app = express();
+// set port
+const port = process.env.PORT || 5000;
 
-app.use(express.json());
-
-const mongooseOptions = {
-  user: process.env.MONGODB_USERNAME,
-  pass: process.env.MONGODB_PASSWORD,
-  useNewUrlParser: true
-};
-
-mongoose.connect(mongoURI, mongooseOptions).then(() => console.log('MongoDB Connected...'))
+// MongoDB Connection
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
+  .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log("MongoDB Error: \n", err));
 mongoose.set('useCreateIndex', true);
 
+// Set up server
+const app = express();
+app.use(express.json());
+
 // Routes
+const pages = require('./routes/api/pages');
+const projects = require('./routes/api/projects');
 app.use('/api/pages', pages);
 app.use('/api/projects', projects);
 
-const port = process.env.PORT || 5000;
-
+// And finally, start server
 app.listen(port, () => console.log(`Server started on port ${port}`));
