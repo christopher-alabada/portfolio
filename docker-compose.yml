@@ -8,7 +8,7 @@ services:
       dockerfile: Dockerfile_mongodb
     restart: always
     volumes:
-      - ./server/data:/data/db
+      - ./server/data/db:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGODB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_ROOT_PASSWORD}
