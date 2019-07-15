@@ -1,7 +1,7 @@
 {
   "name": "portfolio-server",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "src/server.js",
   "license": "MIT",
   "scripts": {
     "dev": "nodemon",

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const Page = require('../models/Page');
-const Skill = require('../models/Skill');
-const Project = require('../models/Project');
+const Page = require('../src/models/Page');
+const Skill = require('../src/models/Skill');
+const Project = require('../src/models/Project');
 require('dotenv').config();
 
 // Use ES6 Promise

@@ -1,7 +1,7 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const Project = require('../../models/Project');
-const Skill = require('../../models/Skill');
+const Project = require('../../src/models/Project');
+const Skill = require('../../src/models/Skill');
 
 
 // Configure chai

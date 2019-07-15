@@ -1,6 +1,6 @@
 const assert = require('assert');
-const Page = require('../../models/Page');
-const Skill = require('../../models/Skill');
+const Page = require('../../src/models/Page');
+const Skill = require('../../src/models/Skill');
 
 
 describe('Page model', () => {
