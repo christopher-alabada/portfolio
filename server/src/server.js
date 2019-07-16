@@ -1,6 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
+// Mongoose models
+const Page = require('./models/Page');
+const Skill = require('./models/Skill');
+const Project = require('./models/Project');
+
 // get config variables
 const config = require('../config');
 
@@ -10,7 +15,19 @@ const port = config.server.port || 5000;
 
 // MongoDB Connection
 mongoose.connect(config.db.uri, { useNewUrlParser: true })
-  .then(() => console.log('MongoDB Connected...'))
+  .then(() => {
+    console.log('MongoDB Connected...');
+
+    // init collections
+    Promise.all([Page.init(), Skill.init(), Project.init()])
+      .then(() => {
+        // seed if development and if not already seeded
+        if (process.env.NODE_ENV === 'development') {
+          const SeedDatabase = require('./seeds/SeedDatabase');
+          SeedDatabase();
+        }
+      });
+  })
   .catch(err => console.log("MongoDB Error: \n", err));
 
 // https://github.com/Automattic/mongoose/issues/6890

@@ -9,8 +9,8 @@ services:
       context: ./server
       dockerfile: Dockerfile_mongodb
     restart: always
-    volumes:
-      - ./server/data/db:/data/db
+    # volumes:
+    #   - ./server/data/db:/data/db
     ports:
       - "27017:27017"
 
