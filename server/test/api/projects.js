@@ -18,8 +18,8 @@ describe('Projects API', () => {
       repo: 'project_name'
     });
 
-    const php = new Skill({name: 'php', image: 'php.png'});
-    const mysql = new Skill({name: 'mysql', image: 'mysql.png'});
+    const php = new Skill({name: 'phptest', image: 'php.png'});
+    const mysql = new Skill({name: 'mysqltest', image: 'mysql.png'});
     
     project.skills.push(php);
     project.skills.push(mysql);
@@ -30,8 +30,9 @@ describe('Projects API', () => {
 
   after((done) => {
     Promise.all([
-      Project.deleteMany({}),
-      Skill.deleteMany({})  
+      Project.deleteOne({name: 'Project Name'}),
+      Skill.deleteOne({name: 'phptest'}),
+      Skill.deleteOne({name: 'mysqltest'})  
     ])
       .then(() => done());
   });
@@ -61,8 +62,8 @@ describe('Projects API', () => {
         res.body.repo.should.equal('project_name');
 
         res.body.should.have.property('skills');
-        res.body.skills[0].name.should.equal('php');
-        res.body.skills[1].name.should.equal('mysql');
+        res.body.skills[0].name.should.equal('phptest');
+        res.body.skills[1].name.should.equal('mysqltest');
 
         done();
       });

@@ -27,13 +27,3 @@ before((done) => {
   // This gets rid of error
   mongoose.set('useCreateIndex', true);
 });
-
-
-after((done) => {
-  Promise.all([
-    mongoose.connection.collections.pages.drop(),
-    mongoose.connection.collections.skills.drop(),
-    mongoose.connection.collections.projects.drop()
-  ])
-    .then(() => { done() });
-});

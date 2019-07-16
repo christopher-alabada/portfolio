@@ -3,26 +3,23 @@ const Skill = require('../../src/models/Skill');
 
 
 describe('Skill model', () => {
-  const php = new Skill({ name: 'php', category: 'language', image: 'php.png' });
+  const php = new Skill({ name: 'phptest', category: 'language', image: 'php.png' });
 
   after((done) => {
-    Skill.deleteMany({})
+    Skill.deleteOne({name: 'phptest'})
       .then(() => done());
   });
 
   it('can save a skill', (done) => {
-    Skill.init()
+    php.save()
       .then(() => {
-        php.save()
-          .then(() => {
-            const phpquery = Skill.findOne({name: "php"});
-            phpquery.exec((err, skill) => {
-              assert(skill.name === 'php');
-              assert(skill.category === 'language');
-              assert(skill.image === 'php.png');
-              done();
-            });
-          });
+        const phpquery = Skill.findOne({name: "phptest"});
+        phpquery.exec((err, skill) => {
+          assert(skill.name === 'phptest');
+          assert(skill.category === 'language');
+          assert(skill.image === 'php.png');
+          done();
+        });
       });
   });
 
@@ -38,7 +35,7 @@ describe('Skill model', () => {
 
 
   it('should validate unique name', (done) => {
-    const php2 = new Skill({ name: 'php', image: 'php2.png' });
+    const php2 = new Skill({ name: 'phptest', image: 'php2.png' });
     php2.save()
       .then(() => {})
       .catch((error) => {

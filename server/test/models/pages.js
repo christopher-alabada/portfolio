@@ -9,13 +9,13 @@ describe('Page model', () => {
   // set up test with a new page
   before((done) => {
     page = new Page({
-      name: 'about',
+      name: 'abouttest',
       title: 'About Me',
       content: 'Lorem ipsum forever!'
     });
 
-    docker = new Skill({name: 'docker', image: 'docker.png'});
-    mongodb = new Skill({name: 'mongodb', image: 'mongodb.png'});
+    docker = new Skill({name: 'dockertest', image: 'docker.png'});
+    mongodb = new Skill({name: 'mongodbtest', image: 'mongodb.png'});
     
     page.skills.push(docker);
     page.skills.push(mongodb);
@@ -28,23 +28,24 @@ describe('Page model', () => {
   // After tests, deleteMany so we don't lose indexes
   after((done) => {
     Promise.all([
-      Page.deleteMany({}),
-      Skill.deleteMany({})
+      Page.deleteOne({name: 'abouttest'}),
+      Skill.deleteOne({name: 'dockertest'}),
+      Skill.deleteOne({name: 'mongodbtest'})
     ])
       .then(() => done());
   });
 
 
   it('can save a page.', (done) => {
-    Page.findOne({name: 'about'})
+    Page.findOne({name: 'abouttest'})
       .populate('skills')
       .then((page) => {
-        assert(page.name === 'about');
+        assert(page.name === 'abouttest');
         assert(page.title === 'About Me');
         assert(page.content === 'Lorem ipsum forever!');
         assert(page.skills.length === 2);
-        assert(page.skills[0].name === 'docker');
-        assert(page.skills[1].name === 'mongodb');
+        assert(page.skills[0].name === 'dockertest');
+        assert(page.skills[1].name === 'mongodbtest');
         done();
       });
   });
@@ -61,7 +62,7 @@ describe('Page model', () => {
 
 
   it('should validate unique name', (done) => {
-    const page2 = new Page({ name: 'about' });
+    const page2 = new Page({ name: 'abouttest' });
     page2.save()
       .then(() => {})
       .catch((error) => {

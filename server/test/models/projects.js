@@ -12,8 +12,8 @@ describe('Project model', () => {
       repo: 'project_name'
     });
 
-    const php = new Skill({name: 'php', image: 'php.png'});
-    const mysql = new Skill({name: 'mysql', image: 'mysql.png'});
+    const php = new Skill({name: 'phptest', image: 'php.png'});
+    const mysql = new Skill({name: 'mysqltest', image: 'mysql.png'});
     
     project.skills.push(php);
     project.skills.push(mysql);
@@ -24,8 +24,9 @@ describe('Project model', () => {
 
   after((done) => {
     Promise.all([
-      Project.deleteMany({}),
-      Skill.deleteMany({})  
+      Project.deleteOne({name: 'Project Name'}),
+      Skill.deleteOne({name: 'phptest'}),
+      Skill.deleteOne({name: 'mysqltest'})
     ])
       .then(() => done());
   });
@@ -38,8 +39,8 @@ describe('Project model', () => {
         assert(proj.description === 'This project is totally tubular');
         assert(proj.link === 'http://tubular.com');
         assert(proj.repo === 'project_name');
-        assert(proj.skills[0].name === 'php');
-        assert(proj.skills[1].name === 'mysql');
+        assert(proj.skills[0].name === 'phptest');
+        assert(proj.skills[1].name === 'mysqltest');
         done();
       });
   });

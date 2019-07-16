@@ -12,15 +12,15 @@ describe('Pages API', () => {
   // Create new Page for api test
   before((done) => {
     const aboutPage = new Page({
-      name: "about",
+      name: "abouttest",
       title: "About Me",
       content: "Lorem ipsum forever!"
     });
 
-    const react = new Skill({name: 'react'});
-    const express = new Skill({name: 'express'});
-    const mongodb = new Skill({name: 'mongodb'});
-    const docker = new Skill({name: 'docker'});
+    const react = new Skill({name: 'reacttest'});
+    const express = new Skill({name: 'expresstest'});
+    const mongodb = new Skill({name: 'mongodbtest'});
+    const docker = new Skill({name: 'dockertest'});
 
     aboutPage.skills.push(react);
     aboutPage.skills.push(express);
@@ -39,15 +39,18 @@ describe('Pages API', () => {
 
   after((done) => {
     Promise.all([
-      Page.deleteMany({}),
-      Skill.deleteMany({})
+      Page.deleteOne({name: "abouttest"}),
+      Skill.deleteOne({name: 'reacttest'}),
+      Skill.deleteOne({name: 'expresstest'}),
+      Skill.deleteOne({name: 'mongodbtest'}),
+      Skill.deleteOne({name: 'dockertest'})
     ])
       .then(() => done());
   });
 
   it('should GET /api/pages/about', (done) => {
     chai.request('http://localhost:5000')
-      .get('/api/pages/about')
+      .get('/api/pages/abouttest')
       .end((err, res) => {
         if (err) {
           console.log(err);
@@ -57,7 +60,7 @@ describe('Pages API', () => {
         res.body.should.be.a('object');
 
         res.body.should.have.property('name');
-        res.body.name.should.equal('about');
+        res.body.name.should.equal('abouttest');
 
         res.body.should.have.property('title');
         res.body.title.should.equal('About Me');
@@ -66,10 +69,10 @@ describe('Pages API', () => {
         res.body.content.should.equal('Lorem ipsum forever!');
 
         res.body.should.have.property('skills');
-        res.body.skills[0].name.should.equal('react');
-        res.body.skills[1].name.should.equal('express');
-        res.body.skills[2].name.should.equal('mongodb');
-        res.body.skills[3].name.should.equal('docker');
+        res.body.skills[0].name.should.equal('reacttest');
+        res.body.skills[1].name.should.equal('expresstest');
+        res.body.skills[2].name.should.equal('mongodbtest');
+        res.body.skills[3].name.should.equal('dockertest');
 
         done();
       });
