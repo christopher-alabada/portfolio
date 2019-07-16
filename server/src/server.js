@@ -7,6 +7,7 @@ const config = require('../config');
 // set port
 const port = config.server.port || 5000;
 
+
 // MongoDB Connection
 mongoose.connect(config.db.uri, { useNewUrlParser: true })
   .then(() => console.log('MongoDB Connected...'))

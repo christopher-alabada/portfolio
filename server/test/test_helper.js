@@ -11,7 +11,7 @@ mongoose.Promise = global.Promise;
 
 // Set up test with mongodb connection
 before((done) => {
-  mongoose.connect(config.db.test.uri, { useNewUrlParser: true });
+  mongoose.connect(config.db.uri, { useNewUrlParser: true });
   mongoose.connection
     .once('open', () => {
 

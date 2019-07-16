@@ -4,7 +4,7 @@ services:
   # Database
   database:
     env_file:
-      - ./server/.env
+      - ./server/.env.development
     build:
       context: ./server
       dockerfile: Dockerfile_mongodb
@@ -28,7 +28,8 @@ services:
     links:
       - database
     environment:
-      WAIT_HOSTS: database:27017
+      - WAIT_HOSTS=database:27017
+      - NODE_ENV=development
     ports:
       - "5000:5000"
 

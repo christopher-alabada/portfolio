@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: `./.env.${process.env.NODE_ENV}` });
 
 const config = {
   db: {
@@ -6,12 +6,9 @@ const config = {
       username: process.env.MONGO_INITDB_ROOT_USERNAME,
       password: process.env.MONGO_INITDB_ROOT_PASSWORD
     },
-    test: {
-      database: process.env.MONGODB_TEST_DATABASE
-    },
+    database: process.env.MONGO_INITDB_DATABASE,
     username: process.env.MONGODB_USERNAME,
     password: process.env.MONGODB_PASSWORD,
-    database: process.env.MONGO_INITDB_DATABASE,
     host: process.env.MONGODB_HOST,
     port: process.env.MONGODB_PORT
   },
@@ -20,7 +17,7 @@ const config = {
   }
 };
 
-const mongodb_uri = [
+config.db.uri = [
   "mongodb://",
   config.db.username,
   ":",
@@ -28,10 +25,10 @@ const mongodb_uri = [
   "@",
   config.db.host,
   ":",
-  config.db.port
+  config.db.port,
+  "/",
+  config.db.database
 ].join('');
 
-config.db.test.uri = mongodb_uri + "/" + config.db.test.database;
-config.db.uri = mongodb_uri + "/" + config.db.database;
 
 module.exports = config;
