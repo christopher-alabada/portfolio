@@ -1,14 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-// get .env variables
-require('dotenv').config();
+// get config variables
+const config = require('../config');
 
 // set port
-const port = process.env.PORT || 5000;
+const port = config.server.port || 5000;
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
+mongoose.connect(config.db.uri, { useNewUrlParser: true })
   .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log("MongoDB Error: \n", err));
 

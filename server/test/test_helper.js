@@ -2,14 +2,16 @@ const mongoose = require('mongoose');
 const Page = require('../src/models/Page');
 const Skill = require('../src/models/Skill');
 const Project = require('../src/models/Project');
-require('dotenv').config();
+
+// get config variables
+const config = require('../config');
 
 // Use ES6 Promise
 mongoose.Promise = global.Promise;
 
 // Set up test with mongodb connection
 before((done) => {
-  mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
+  mongoose.connect(config.db.test.uri, { useNewUrlParser: true });
   mongoose.connection
     .once('open', () => {
 
