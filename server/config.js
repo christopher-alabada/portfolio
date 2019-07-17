@@ -14,6 +14,9 @@ const config = {
   },
   server: {
     port: process.env.SERVER_PORT
+  },
+  client: {
+    url: 'http://localhost:3000'
   }
 };
 

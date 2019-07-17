@@ -1,7 +1,5 @@
-// Express framework
 const express = require('express');
-
-// get config variables
+const cors = require('cors');
 const config = require('../config');
 
 // set server port from config. Use 5000 if not set
@@ -20,6 +18,7 @@ MongoConnect(() => {
 // Set up server
 const app = express();
 app.use(express.json());
+app.use(cors({ origin: config.client.url }));
 
 // Routes
 const pages = require('./routes/api/pages');
