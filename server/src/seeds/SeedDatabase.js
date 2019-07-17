@@ -3,26 +3,7 @@ const Page = require('../models/Page');
 const Skill = require('../models/Skill');
 const Project = require('../models/Project');
 
-const seedPages = () => {
-  Page.estimatedDocumentCount(function(err, count) {
-    if (count === 0) {
-      // seed pages
-      console.log("Seeding Pages...");
-      require('./data/pages.js');
-    }
-  });
-};
-
-const seedProjects = () => {
-  Project.estimatedDocumentCount(function(err, count) {
-    if (count === 0) {
-      // seed projects
-      console.log("Seeding Projects...");
-      require('./data/projects.js');
-    }
-  });
-};
-
+// Seeds the database here. Also this is what we export.
 const SeedDatabase = () => {
   Skill.estimatedDocumentCount(function(err, count) {
     if (count === 0) {
@@ -38,5 +19,28 @@ const SeedDatabase = () => {
     }
   });
 };
+
+// Seed pages once the skills create promise has resolved
+const seedPages = () => {
+  Page.estimatedDocumentCount(function(err, count) {
+    if (count === 0) {
+      // seed pages
+      console.log("Seeding Pages...");
+      require('./data/pages.js');
+    }
+  });
+};
+
+// Seed projects once the skills create promise has resolved
+const seedProjects = () => {
+  Project.estimatedDocumentCount(function(err, count) {
+    if (count === 0) {
+      // seed projects
+      console.log("Seeding Projects...");
+      require('./data/projects.js');
+    }
+  });
+};
+
 
 module.exports = SeedDatabase;
