@@ -8,6 +8,10 @@ const SkillSchema = new Schema({
     index: true,
     unique: true
   },
+  displayName: {
+    type: String,
+    required: [true, 'Skill displayName is required.']
+  },
   category: {
     type: String
   },

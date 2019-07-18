@@ -17,10 +17,10 @@ describe('Pages API', () => {
       content: "Lorem ipsum forever!"
     });
 
-    const react = new Skill({name: 'reacttest'});
-    const express = new Skill({name: 'expresstest'});
-    const mongodb = new Skill({name: 'mongodbtest'});
-    const docker = new Skill({name: 'dockertest'});
+    const react = new Skill({name: 'reacttest', displayName: 'React' });
+    const express = new Skill({name: 'expresstest', displayName: 'Express' });
+    const mongodb = new Skill({name: 'mongodbtest', displayName: 'MongoDB' });
+    const docker = new Skill({name: 'dockertest', displayName: 'Docker' });
 
     aboutPage.skills.push(react);
     aboutPage.skills.push(express);

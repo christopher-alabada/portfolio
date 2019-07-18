@@ -14,8 +14,8 @@ describe('Page model', () => {
       content: 'Lorem ipsum forever!'
     });
 
-    docker = new Skill({name: 'dockertest', image: 'docker.png'});
-    mongodb = new Skill({name: 'mongodbtest', image: 'mongodb.png'});
+    docker = new Skill({name: 'dockertest', displayName: 'Docker', image: 'docker.png'});
+    mongodb = new Skill({name: 'mongodbtest', displayName: 'MongoDB', image: 'mongodb.png'});
     
     page.skills.push(docker);
     page.skills.push(mongodb);

@@ -18,8 +18,8 @@ describe('Projects API', () => {
       repo: 'project_name'
     });
 
-    const php = new Skill({name: 'phptest', image: 'php.png'});
-    const mysql = new Skill({name: 'mysqltest', image: 'mysql.png'});
+    const php = new Skill({name: 'phptest', displayName: 'PHP', image: 'php.png'});
+    const mysql = new Skill({name: 'mysqltest', displayName: 'MySQL', image: 'mysql.png'});
     
     project.skills.push(php);
     project.skills.push(mysql);
