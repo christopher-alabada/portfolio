@@ -5,8 +5,8 @@ const ExperienceSchema = new Schema({
   position: String,
   location: String,
   company: String,
-  from: String,
-  to: String,
+  from: Date,
+  to: Date,
   description: String
 });
 
