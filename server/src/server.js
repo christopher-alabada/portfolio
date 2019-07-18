@@ -21,10 +21,9 @@ app.use(express.json());
 app.use(cors({ origin: config.client.url }));
 
 // Routes
-const pages = require('./routes/api/pages');
-const projects = require('./routes/api/projects');
-app.use('/api/pages', pages);
-app.use('/api/projects', projects);
+app.use('/api/pages', require('./routes/api/pages'));
+app.use('/api/projects', require('./routes/api/projects'));
+app.use('/api/experiences', require('./routes/api/experiences'));
 
 // 404
 app.use(function(req, res) {
