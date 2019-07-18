@@ -8,7 +8,7 @@ import '../../styles/About.css';
 
 
 class About extends React.Component {
-  state = { data: {}, skills: [] };
+  state = { data: {}, skills: [], experiences: [] };
 
   skillsData = skills => {
     const data = {};
@@ -26,11 +26,19 @@ class About extends React.Component {
   };
 
   componentDidMount() {
-    Server.get('/api/pages/about')
-      .then(response => {
-        let skills = this.skillsData(response.data.skills);
-        delete response.data.skills;
-        this.setState({ data: response.data, skills: skills });
+    Promise.all([
+      Server.get('/api/pages/about'),
+      Server.get('/api/experiences')
+    ])
+      .then((responses) => {
+        let skills = this.skillsData(responses[0].data.skills);
+        delete responses[0].data.skills;
+
+        this.setState({
+          data: responses[0].data,
+          skills: skills,
+          experiences: responses[1].data
+        });
       });
   }
 
@@ -63,6 +71,27 @@ class About extends React.Component {
     }
   }
 
+  renderExperiences() {
+    if (this.state.experiences.length > 0) {
+      return this.state.experiences.map(experience => {
+        return (
+          <div key={experience._id}>
+            <div>
+              <div>{experience.position}</div>
+              <div>{experience.from} - {experience.to}</div>
+            </div>
+            <div>
+              <div>{experience.company}</div>
+              <div>{experience.location}</div>
+            </div>
+            <ul>
+              {experience.description.split("\n").map((li, i) => <li key={i}>{li}</li>)}
+            </ul>
+          </div>
+        );
+      });
+    }
+  }
   render() {
     return(
       <div className="main-content">
@@ -71,6 +100,11 @@ class About extends React.Component {
         <div>
           <h2>Skills</h2>
           {this.renderSkills()}
+        </div>
+
+        <div>
+          <h2>Experience</h2>
+          {this.renderExperiences()}
         </div>
       </div>
     );
