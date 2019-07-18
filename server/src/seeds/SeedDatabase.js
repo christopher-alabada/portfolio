@@ -2,6 +2,7 @@
 const Page = require('../models/Page');
 const Skill = require('../models/Skill');
 const Project = require('../models/Project');
+const Experience = require('../models/Experience');
 
 // Seeds the database here. Also this is what we export.
 const SeedDatabase = () => {
@@ -15,6 +16,19 @@ const SeedDatabase = () => {
           console.log("Done seeding Skills...");
           seedPages();
           seedProjects();
+        });
+    }
+  });
+
+  // Seed experiences.
+  Experience.estimatedDocumentCount(function(err, count) {
+    if (count === 0) {
+      // seed experiences
+      console.log("Seeding Experiences...");
+      const experienceData = require('./data/experiences.js');
+      Experience.create(experienceData)
+        .then(() => {
+          console.log("Done seeding Experiences...");
         });
     }
   });
