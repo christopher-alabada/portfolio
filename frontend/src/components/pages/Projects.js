@@ -1,19 +1,29 @@
 import React from 'react';
+import Server from '../../api/Server';
 
 import '../../styles/Projects.css';
 
-// import ProjectCard from '../ProjectCard';
 import ProjectItem from '../ProjectItem';
 
 
 class Projects extends React.Component {
+  state = { data: [] };
 
-  renderProjectCards() {
-    const PROJECTS = ['aaa', 'bbb', 'ccc', 'ddd', 'eee', 'fff'];
+  componentDidMount() {
+    Server.get('/api/projects')
+      .then(response => {
+        this.setState({ data: response.data });
+      });
+  }
 
-    return PROJECTS.map(project => {
-      return <ProjectItem project={project} />;
-    });
+  renderProjectItems() {
+    if (this.state.data.length > 0) {
+      return this.state.data.map(project => {
+        return(
+          <ProjectItem project={project} />
+        );
+      });
+    }
   }
 
   render() {
@@ -21,7 +31,7 @@ class Projects extends React.Component {
       <div className="main-content">
         <h2>Projects</h2>
         <div className="project-items">
-          {this.renderProjectCards()}
+          {this.renderProjectItems()}
         </div>
       </div>
     );
