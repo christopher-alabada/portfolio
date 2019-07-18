@@ -1,144 +1,80 @@
 import React from 'react';
+import Server from '../../api/Server';
+import newline2p from '../../helpers/newline2p';
+import capitalizeWords from '../../helpers/capitalizeWords';
 
 import '../../styles/About.css';
-import php from '../../images/php.png';
-import ruby from '../../images/ruby.png';
-import javascript from '../../images/javascript.png';
-import python from '../../images/python.png';
-import bash from '../../images/bash.png';
-import rails from '../../images/rails.png';
-import react from '../../images/react.png';
-import vue from '../../images/vue.png';
-import nodejs from '../../images/nodejs.png';
-import mysql from '../../images/mysql.png';
-import graphql from '../../images/graphql.png';
-
-import redis from '../../images/redis.png';
-import apache from '../../images/apache.png';
-import nginx from '../../images/nginx.png';
-import centos from '../../images/centos.png';
-import ubuntu from '../../images/ubuntu.png';
-import rackspace from '../../images/rackspace.png';
-import aws from '../../images/aws.png';
-import heroku from '../../images/heroku.png';
 
 
 
-const About = () => {
-  return(
-    <div className="main-content">
+class About extends React.Component {
+  state = { data: {}, skills: [] };
+
+  skillsData = skills => {
+    const data = {};
+    let category;
+
+    skills.forEach(skill => {
+      category = capitalizeWords(skill.category || 'other technologies');
+      if (typeof data[`${category}`] === 'undefined') {
+        data[`${category}`] = [];
+      }
+      data[`${category}`].push(skill);
+    });
+
+    return data;
+  };
+
+  componentDidMount() {
+    Server.get('/api/pages/about')
+      .then(response => {
+        let skills = this.skillsData(response.data.skills);
+        delete response.data.skills;
+        this.setState({ data: response.data, skills: skills });
+      });
+  }
+
+  renderContent() {
+    return(
       <div>
-        <h2>About Me</h2>
-        <p>
-          Hi! I'm Christopher Alabada, a Full-Stack Developer, with over 12 years
-          experience in internet technologies, ranging from PHP to Ruby on Rails,
-          to React and Vue, to Linux/Unix server administration.
-        </p>
-        <p>
-          Pragmatic, analytical, and a stickler for elegant and efficient code.
-          Mostly self-taught, I've got a curious mind and an interest in the how's
-          and why's of our world.
-        </p>
+        <h2>{this.state.data.title}</h2>
+        {newline2p(this.state.data.content)}
       </div>
+    );
+  }
 
-      <div>
-        <h2>Skills</h2>
+  renderSkills() {
+    if (typeof this.state.skills !== 'undefined') {
+      return Object.keys(this.state.skills).map(category => {
+        return (
+          <div key={category}>
+            <h4>{category}</h4>
+            {this.state.skills[`${category}`].map(skill => {
+              return (
+                <div className="skill-item" key={skill.image}>
+                  <div><img src={require(`../../images/${skill.image}`)} className="icon" alt={skill.image} /></div>
+                  <div>{skill.displayName}</div>
+                </div>
+              );
+            })}
+          </div>
+        );
+      });
+    }
+  }
 
-        <div>
-          <h4>Languages</h4>
-          <div className="skill-item">
-            <div><img src={php} className="icon" alt="php" /></div>
-            <div>PHP</div>
-          </div>
-          <div className="skill-item">
-            <div><img src={ruby} className="icon" alt="ruby" /></div>
-            <div>Ruby</div>
-          </div>
-          <div className="skill-item">
-            <div><img src={javascript} className="icon" alt="javascript" /></div>
-            <div>Javascript</div>
-          </div>
-          <div className="skill-item">
-            <div><img src={python} className="icon" alt="python" /></div>
-            <div>Python</div>
-          </div>
-          <div className="skill-item">
-            <div><img src={bash} className="icon" alt="bash" /></div>
-            <div>Bash Scripting</div>
-          </div>
-        </div>
-
-        <div>
-          <h4>Frameworks</h4>
-          <div className="skill-item">
-            <div><img src={rails} className="icon" alt="rails" /></div>
-            <div>Rails</div>
-          </div>
-          <div className="skill-item">
-            <div><img src={react} className="icon" alt="react" /></div>
-            <div>React</div>
-          </div>
-          <div className="skill-item">
-            <div><img src={vue} className="icon" alt="vue" /></div>
-            <div>Vue</div>
-          </div>
-          <div className="skill-item">
-            <div><img src={nodejs} className="icon" alt="nodejs" /></div>
-            <div>Node.js</div>
-          </div>
-        </div>
+  render() {
+    return(
+      <div className="main-content">
+        {this.renderContent()}
 
         <div>
-          <h4>Databases</h4>
-          <div className="skill-item">
-            <div><img src={mysql} className="icon" alt="mysql" /></div>
-            <div>MySQL</div>
-          </div>
-          <div className="skill-item">
-            <div><img src={graphql} className="icon" alt="graphql" /></div>
-            <div>GraphQL</div>
-          </div>
+          <h2>Skills</h2>
+          {this.renderSkills()}
         </div>
-
-        <div>
-          <h4>Web Technologies</h4>
-          <div className="skill-item">
-            <div><img src={apache} className="icon" alt="apache" /></div>
-            <div>Apache</div>
-          </div>
-          <div className="skill-item">
-            <div><img src={nginx} className="icon" alt="nginx" /></div>
-            <div>Nginx</div>
-          </div>
-          <div className="skill-item">
-            <div><img src={redis} className="icon" alt="redis" /></div>
-            <div>Redis</div>
-          </div>
-          <div className="skill-item">
-            <div><img src={centos} className="icon" alt="centos" /></div>
-            <div>CentOS</div>
-          </div>
-          <div className="skill-item">
-            <div><img src={ubuntu} className="icon" alt="ubuntu" /></div>
-            <div>Ubuntu</div>
-          </div>
-          <div className="skill-item">
-            <div><img src={aws} className="icon" alt="aws" /></div>
-            <div>AWS</div>
-          </div>
-          <div className="skill-item">
-            <div><img src={rackspace} className="icon" alt="rackspace" /></div>
-            <div>Rackspace</div>
-          </div>
-          <div className="skill-item">
-            <div><img src={heroku} className="icon" alt="heroku" /></div>
-            <div>Heroku</div>
-          </div>
-        </div>
-
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default About;
