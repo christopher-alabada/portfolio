@@ -41,26 +41,28 @@ describe('Experience API', () => {
           console.log(err);
         }
 
+        const i = res.body.length - 1;
+
         res.should.have.status(200);
         res.body.should.be.a('array');
 
-        res.body[0].should.have.property('position');
-        res.body[0].position.should.equal('Pro Snowboarder');
+        res.body[i].should.have.property('position');
+        res.body[i].position.should.equal('Pro Snowboarder');
 
-        res.body[0].should.have.property('location');
-        res.body[0].location.should.equal('Mammoth, CA');
+        res.body[i].should.have.property('location');
+        res.body[i].location.should.equal('Mammoth, CA');
 
-        res.body[0].should.have.property('company');
-        res.body[0].company.should.equal('Burton');
+        res.body[i].should.have.property('company');
+        res.body[i].company.should.equal('Burton');
 
-        res.body[0].should.have.property('from');
-        res.body[0].from.should.equal('2010-12-01T00:00:00.000Z');
+        res.body[i].should.have.property('from');
+        res.body[i].from.should.equal('2010-12-01T00:00:00.000Z');
 
-        res.body[0].should.have.property('to');
-        res.body[0].to.should.equal('2019-04-01T00:00:00.000Z');
+        res.body[i].should.have.property('to');
+        res.body[i].to.should.equal('2019-04-01T00:00:00.000Z');
 
-        res.body[0].should.have.property('description');
-        res.body[0].description.should.equal('I just snowboard everyday');
+        res.body[i].should.have.property('description');
+        res.body[i].description.should.equal('I just snowboard everyday');
 
         done();
       });
