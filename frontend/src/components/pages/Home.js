@@ -32,7 +32,7 @@ class Home extends React.Component {
         return (
           <div key={skill.name}>
             <div><img src={require(`../../images/${skill.image}`)} className="icon-skill" alt={skill.name} /></div>
-            <div>{skill.name}</div>
+            <div>{skill.displayName}</div>
           </div>
         );
       });
