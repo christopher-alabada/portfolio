@@ -9,3 +9,4 @@ require('./models/experiences');
 
 require('./api/pages');
 require('./api/projects');
+require('./api/experiences');
