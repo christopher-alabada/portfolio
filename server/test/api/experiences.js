@@ -16,8 +16,8 @@ describe('Experience API', () => {
       position: 'Pro Snowboarder',
       location: 'Mammoth, CA',
       company: 'Burton',
-      from: new Date(2010, 11),
-      to: new Date(2019, 3),
+      from: new Date(1976, 11),
+      to: new Date(2010, 3),
       description: 'I just snowboard everyday'
     });
 
@@ -56,10 +56,10 @@ describe('Experience API', () => {
         res.body[i].company.should.equal('Burton');
 
         res.body[i].should.have.property('from');
-        res.body[i].from.should.equal('2010-12-01T00:00:00.000Z');
+        res.body[i].from.should.equal('1976-12-01T00:00:00.000Z');
 
         res.body[i].should.have.property('to');
-        res.body[i].to.should.equal('2019-04-01T00:00:00.000Z');
+        res.body[i].to.should.equal('2010-04-01T00:00:00.000Z');
 
         res.body[i].should.have.property('description');
         res.body[i].description.should.equal('I just snowboard everyday');
