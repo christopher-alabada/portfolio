@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const Page = require('../models/Page');
 const Skill = require('../models/Skill');
 const Project = require('../models/Project');
+const Contact = require('../models/Contact');
 const Experience = require('../models/Experience');
 
 // get config variables
@@ -19,7 +20,7 @@ const MongoConnect = (onSuccess) => {
       console.log('MongoDB Connected...');
 
       // init collections
-      Promise.all([Page.init(), Skill.init(), Project.init(), Experience.init()])
+      Promise.all([Page.init(), Skill.init(), Project.init(), Contact.init(), Experience.init()])
         .then(() => onSuccess());
     })
     .catch(err => console.log("MongoDB Error: \n", err));
