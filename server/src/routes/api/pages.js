@@ -7,7 +7,8 @@ const Skill = require('../../models/Skill');
 router.get('/:name', (req, res) => {
   Page.findOne({ name: req.params.name })
     .populate('skills')
-    .then(page => res.json(page));
+    .then(page => res.json(page))
+    .catch(err => res.json({ message: err }));
 });
 
 module.exports = router;
