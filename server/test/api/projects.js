@@ -2,6 +2,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const Project = require('../../src/models/Project');
 const Skill = require('../../src/models/Skill');
+const config = require('../../config');
 
 
 // Configure chai
@@ -39,7 +40,7 @@ describe('Projects API', () => {
 
 
   it('should GET /api/projects/Project+Name', (done) => {
-    chai.request('http://localhost:5000')
+    chai.request(config.server.url)
       .get('/api/projects/Project%20Name')
       .end((err, res) => {
         if (err) {

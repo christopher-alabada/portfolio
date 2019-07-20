@@ -1,6 +1,7 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const Experience = require('../../src/models/Experience');
+const config = require('../../config');
 
 
 // Configure chai
@@ -34,7 +35,7 @@ describe('Experience API', () => {
   });
 
   it('should GET /api/experiences', (done) => {
-    chai.request('http://localhost:5000')
+    chai.request(config.server.url)
       .get('/api/experiences')
       .end((err, res) => {
         if (err) {

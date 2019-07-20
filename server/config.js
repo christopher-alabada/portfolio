@@ -13,6 +13,7 @@ const config = {
     port: process.env.MONGODB_PORT
   },
   server: {
+    host: 'localhost',
     port: process.env.SERVER_PORT,
     key: process.env.HTTPS_KEY,
     crt: process.env.HTTPS_CERT
@@ -21,6 +22,8 @@ const config = {
     url: 'http://localhost:3000'
   }
 };
+
+config.server.url = 'https://' + config.server.host + ":" + config.server.port;
 
 config.db.uri = [
   "mongodb://",

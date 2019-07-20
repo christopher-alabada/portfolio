@@ -2,6 +2,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const Page = require('../../src/models/Page');
 const Skill = require('../../src/models/Skill');
+const config = require('../../config');
 
 
 // Configure chai
@@ -49,7 +50,7 @@ describe('Pages API', () => {
   });
 
   it('should GET /api/pages/about', (done) => {
-    chai.request('http://localhost:5000')
+    chai.request(config.server.url)
       .get('/api/pages/abouttest')
       .end((err, res) => {
         if (err) {
