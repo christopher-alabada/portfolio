@@ -1,6 +1,9 @@
 .DS_Store
 _notes.txt
 
+# cert directory
+.cert/
+
 # MongoDB data files
 server/data/
 data/
