@@ -13,7 +13,9 @@ const config = {
     port: process.env.MONGODB_PORT
   },
   server: {
-    port: process.env.SERVER_PORT
+    port: process.env.SERVER_PORT,
+    key: process.env.HTTPS_KEY,
+    crt: process.env.HTTPS_CERT
   },
   client: {
     url: 'http://localhost:3000'

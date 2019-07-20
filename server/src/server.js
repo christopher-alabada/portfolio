@@ -1,6 +1,8 @@
 const express = require('express');
+const https = require('https');
 const cors = require('cors');
 const config = require('../config');
+const fs = require('fs');
 
 // set server port from config. Use 5000 if not set
 const port = config.server.port || 5000;
@@ -36,4 +38,7 @@ app.use(function(err, req, res, next) {
 });
 
 // And finally, start server
-app.listen(port, () => console.log(`Server started on port ${port}`));
+https.createServer({
+  key: fs.readFileSync(config.server.key),
+  cert: fs.readFileSync(config.server.crt)
+}, app).listen(port, () => console.log(`Server started on port ${port}`));
