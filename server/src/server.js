@@ -4,8 +4,6 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const fs = require('fs');
 const config = require('../config');
-const cookieParser = require('cookie-parser');
-const csurf = require('csurf');
 
 // set server port from config. Use 5000 if not set
 const port = config.server.port || 5000;
@@ -27,8 +25,6 @@ const app = express();
 // Server config
 app.use(express.json());
 app.use(cors({ credentials: true, origin: config.client.url }));
-app.use(cookieParser());
-app.use(csurf({ cookie: true }));
 
 // Routes
 app.use('/api/pages', require('./routes/api/pages'));

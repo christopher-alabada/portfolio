@@ -1,13 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const Contact = require('../../models/Contact');
+const cookieParser = require('cookie-parser');
+const csurf = require('csurf');
 
-// csfr
 
-
-
-// const csrfMiddleware = csrf({ cookie: true });
-// router.use(csrfMiddleware);
+router.use(cookieParser());
+router.use(csurf({ cookie: true }));
 
 // GET /api/contacts
 router.get('/', (req, res) => {
