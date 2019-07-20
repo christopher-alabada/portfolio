@@ -72,13 +72,20 @@ class About extends React.Component {
   }
 
   renderExperiences() {
+    const dateOptions = { month: 'long', year: 'numeric' };
+
     if (this.state.experiences.length > 0) {
+      let fromDate, toDate;
+
       return this.state.experiences.map(experience => {
+        fromDate = new Date(experience.from).toLocaleDateString('default', dateOptions);
+        toDate = new Date(experience.to).toLocaleDateString('default', dateOptions);
+        
         return (
           <div key={experience._id}>
             <div>
               <div>{experience.position}</div>
-              <div>{experience.from} - {experience.to}</div>
+              <div>{fromDate} - {toDate}</div>
             </div>
             <div>
               <div>{experience.company}</div>
