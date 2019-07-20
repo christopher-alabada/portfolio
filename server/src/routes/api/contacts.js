@@ -15,20 +15,15 @@ router.get('/', (req, res) => {
 
 // POST /api/contacts
 router.post('/', (req, res) => {
-  console.log('req: ', req);
-  console.log('res: ', res);
-  res.json({ postedData: 'posted' });
-  // const contact = new Contact({
-  //   name: req.params.name,
-  //   email: req.params.email,
-  //   message: req.params.message
-  // });
+  const contact = new Contact({
+    name: req.body.name,
+    email: req.body.email,
+    message: req.body.message
+  });
 
-  // contact.save()
-  //   .then(contact => {
-  //     res.json({ message: 'Message saved successfully.'});
-  //   })
-  //   .catch(err => res.json({ message: 'Something wrong.' }));
+  contact.save()
+    .then(contact => res.json({ message: 'Message saved successfully.'}))
+    .catch(err => res.json({ message: 'Something wrong.', err: err }));
 });
 
 module.exports = router;
