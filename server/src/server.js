@@ -1,8 +1,11 @@
 const express = require('express');
 const https = require('https');
+const mongoose = require('mongoose');
+const session = require('express-session');
 const cors = require('cors');
-const config = require('../config');
 const fs = require('fs');
+const config = require('../config');
+
 
 // set server port from config. Use 5000 if not set
 const port = config.server.port || 5000;
@@ -17,8 +20,11 @@ MongoConnect(() => {
   }
 });
 
-// Set up server
+
+// Create server
 const app = express();
+
+// Server config
 app.use(express.json());
 app.use(cors({ origin: config.client.url }));
 
@@ -36,6 +42,12 @@ app.use(function(req, res) {
 app.use(function(err, req, res, next) {
   return res.status(500).json({ error: err });
 });
+
+// Start sessions
+const MongoStore = require('connect-mongo')(session);
+app.use(session({
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
+}));
 
 // And finally, start server
 https.createServer({
