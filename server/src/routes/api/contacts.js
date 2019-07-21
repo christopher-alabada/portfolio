@@ -3,6 +3,7 @@ const router = express.Router();
 const Contact = require('../../models/Contact');
 const cookieParser = require('cookie-parser');
 const csurf = require('csurf');
+const mailer = require('../../mailer/mailer');
 
 
 router.use(cookieParser());
@@ -22,7 +23,12 @@ router.post('/', (req, res) => {
   });
 
   contact.save()
-    .then(contact => res.json({ message: 'Message saved successfully.'}))
+    .then(contact => {
+      // send email
+      mailer.sendEmail()
+        .then(mailResponse => res.json({ message: ['Message saved successfully.', 'Email successfully sent.']}))
+        .catch(err => res.json({ message: ['Message saved successfully.', 'Email failed.']}));
+    })
     .catch(err => res.json({ message: 'Something wrong.', err: err }));
 });
 

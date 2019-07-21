@@ -1,6 +1,7 @@
 require('./test_helper');
 
 require('./server');
+require('./mailer');
 
 require('./models/skills');
 require('./models/pages');

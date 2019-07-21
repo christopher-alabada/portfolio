@@ -8,6 +8,7 @@
     "test": "mocha test/tests.js --exit"
   },
   "dependencies": {
+    "@sendgrid/mail": "^6.4.0",
     "connect-mongo": "^3.0.0",
     "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",

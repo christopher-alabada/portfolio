@@ -20,6 +20,10 @@ const config = {
   },
   client: {
     url: 'http://portfolio.dev.topher.la:3000'
+  },
+  email: {
+    to: 'christopher.alabada@gmail.com',
+    from: 'portfolio-app@chris.topher.la'
   }
 };
 
