@@ -40,6 +40,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile.dev
+    environment:
+      - HTTPS=true
     depends_on:
       - database
       - node-app

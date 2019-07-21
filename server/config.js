@@ -19,7 +19,7 @@ const config = {
     crt: process.env.HTTPS_CERT
   },
   client: {
-    url: 'http://portfolio.dev.topher.la:3000'
+    url: 'https://portfolio.dev.topher.la:3000'
   },
   email: {
     to: 'christopher.alabada@gmail.com',
@@ -27,7 +27,7 @@ const config = {
   }
 };
 
-config.server.url = 'http://' + config.server.host + ":" + config.server.port;
+config.server.url = 'https://' + config.server.host + ":" + config.server.port;
 
 config.db.uri = [
   "mongodb://",

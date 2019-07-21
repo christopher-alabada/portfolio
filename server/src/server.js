@@ -1,5 +1,5 @@
 const express = require('express');
-// const https = require('https');
+const https = require('https');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const fs = require('fs');
@@ -43,9 +43,7 @@ app.use(function(err, req, res, next) {
 });
 
 // And finally, start server
-app.listen(port, () => console.log(`Server started on port ${port}`));
-// https.createServer(app)
-// {
-//   key: fs.readFileSync(config.server.key),
-//   cert: fs.readFileSync(config.server.crt)
-// }
+https.createServer({
+  key: fs.readFileSync(config.server.key),
+  cert: fs.readFileSync(config.server.crt)
+}, app).listen(port, () => console.log(`Server started on port ${port}`));
