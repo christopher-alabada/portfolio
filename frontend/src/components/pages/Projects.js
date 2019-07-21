@@ -20,7 +20,7 @@ class Projects extends React.Component {
     if (this.state.data.length > 0) {
       return this.state.data.map(project => {
         return(
-          <ProjectItem project={project} />
+          <ProjectItem key={project.name} project={project} />
         );
       });
     }
