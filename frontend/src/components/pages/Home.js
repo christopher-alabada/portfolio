@@ -52,7 +52,7 @@ class Home extends React.Component {
     if (Object.keys(this.state.skills).length > 0) {
       return Object.keys(this.state.skills).map(category => {
         return (
-          <div className="col-md-3 mb-2" key={category}>
+          <div className="col-md-3 col-sm-6 mb-2" key={category}>
             <h4>{category}</h4>
             {this.state.skills[`${category}`].map(skill => {
               return (
@@ -79,15 +79,15 @@ class Home extends React.Component {
         toDate = new Date(experience.to).toLocaleDateString('default', dateOptions);
         
         return (
-          <div className="row mb-5" key={experience._id}>
-            <div className="col-md-3 text-nowrap">
+          <div className="row mb-5 justify-content-between" key={experience._id}>
+            <div className="col-md-3">
               <div className="title">{experience.position}</div>
               <div className="title sub">{experience.company}</div>
               <div className="title sub">{experience.location}</div>
               <div className="title sub">{fromDate} - {toDate}</div>
             </div>
 
-            <div className="col-md-9 gray-bullets">
+            <div className="col-md-9 dark-red-berry-bullets">
               <ul>{experience.description.split("\n").map((li, i) => <li key={i}>{li}</li>)}</ul>
             </div>
           </div>
@@ -106,7 +106,7 @@ class Home extends React.Component {
         </div>
 
         <div className="row mb-5 justify-content-between">
-          <div className="col-md-7 mb-2">
+          <div className="col-md-8 mb-2">
             {newline2p(this.state.data.content)}
           </div>
           

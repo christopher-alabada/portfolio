@@ -7,6 +7,12 @@
   color: #000;
 }
 
+.nav-link {
+  color: #000 !important;
+  margin-left: 20px;
+  font-size: 1.2em;
+}
+
 .nav-container {
     width: 100%;
     padding-right: 15px;
@@ -17,6 +23,10 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+}
+
+.christopher {
+  margin-top: 7px;
 }
 
 @media (max-width: 576px) {

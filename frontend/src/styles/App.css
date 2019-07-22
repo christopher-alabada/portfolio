@@ -13,7 +13,8 @@ a {
 }
 
 a:hover {
-  color: #000;
+  color: #A61C00;
+  text-decoration: underline;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -22,13 +23,13 @@ h1, h2, h3, h4, h5, h6 {
   color: #000 !important;
 }
 
-.gray-bullets ul {
+.dark-red-berry-bullets ul {
   list-style: none;
 }
 
-.gray-bullets li::before {
+.dark-red-berry-bullets li::before {
   content: "\2022";
-  color: #666;
+  color: #A61C00;
   display: inline-block; width: 1em;
   margin-left: -1em;
 }
