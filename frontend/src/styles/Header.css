@@ -42,16 +42,25 @@
   .nav-container {
     max-width: 625px;
   }
+  .christopher {
+    font-size: 1.4em;
+  }
 }
 
 @media (min-width: 992px) {
   .nav-container {
     max-width: 805px;
   }
+  .christopher {
+    font-size: 1.8em;
+  }
 }
 
 @media (min-width: 1200px) {
   .nav-container {
     max-width: 960px;
+  }
+  .christopher {
+    font-size: 1.8em;
   }
 }
