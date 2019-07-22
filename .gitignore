@@ -5,8 +5,7 @@ _notes.txt
 .cert/
 
 # MongoDB data files
-server/data/
-data/
+server/data/db
 
 # vim files
 *~
