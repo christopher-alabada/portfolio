@@ -24,7 +24,7 @@ class Home extends React.Component {
 
   componentDidMount() {
     Promise.all([
-      Server.get('/api/pages/about'),
+      Server.get('/api/pages/home'),
       Server.get('/api/experiences')
     ])
       .then((responses) => {
