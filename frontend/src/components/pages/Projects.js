@@ -1,8 +1,5 @@
 import React from 'react';
 import Server from '../../api/Server';
-
-import '../../styles/Projects.css';
-
 import ProjectItem from '../ProjectItem';
 
 
@@ -28,11 +25,16 @@ class Projects extends React.Component {
 
   render() {
     return(
-      <div className="main-content">
-        <h2>Projects</h2>
-        <div className="project-items">
-          {this.renderProjectItems()}
+      <div className="col-md-10 offset-md-1">
+        <div className="row">
+          <div className="col-md-12">
+            <h2 className="mb-3">Projects</h2>
+          </div>
         </div>
+        
+        
+          {this.renderProjectItems()}
+        
       </div>
     );
   }
