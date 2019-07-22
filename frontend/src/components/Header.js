@@ -2,16 +2,27 @@ import React from 'react';
 
 import '../styles/Header.css';
 
+
 const Header = () => {
   return(
-    <div className="header">
-      <div><h1><a href="/">Christopher Alabada</a></h1></div>
-      <div className="header-menu">
-        <div><a href="/about">about</a></div>
-        <div><a href="/projects">projects</a></div>
-        <div><a href="/contact">contact</a></div>
+    <nav className="navbar fixed-top navbar-expand-sm navbar-light bg-light">
+      <div className="nav-container">
+        <h2 className="christopher"><a href="/">Christopher Alabada</a></h2>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <a className="nav-link" href="/projects">projects</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/contact">contact</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
+    </nav>
   );
 };
 

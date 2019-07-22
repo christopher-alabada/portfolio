@@ -1,46 +1,56 @@
-@import-normalize;
-@import url('https://fonts.googleapis.com/css?family=Lato:300,400&display=swap');
-
-
 body {
   margin: 0px;
-  font-family: 'Lato', 'Sans Serif';
+  padding-top: 130px;
   font-weight: 300;
-  font-size: 1.4em;
-  color: #333;
-  /*height: 100vh;*/
-  background-color: #eee;
-}
-
-h1 {
-  font-style: italic;
-  font-size: 1.5em;
-  padding-top: 7px;
-  /*font-weight: normal;*/
-}
-
-h2, h3, h4, h5, h6 {
-  font-style: italic;
+  font-size: 1.2em;
+  color: #000;
+  background-color: #efefef;
 }
 
 a {
-  /*color: #DF4747;*/
-  color: #000;
+  color: #A61C00;
   text-decoration: none;
 }
 
 a:hover {
-  /*color: #DF4747;*/
   color: #000;
-  text-decoration: underline;
 }
 
-.main-content {
-  position: relative;
-  margin: 150px auto;
-  padding: 0 150px;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Open Sans', sans-serif;
+  font-style: italic;
+  color: #000 !important;
+}
+
+.gray-bullets ul {
+  list-style: none;
+}
+
+.gray-bullets li::before {
+  content: "\2022";
+  color: #666;
+  display: inline-block; width: 1em;
+  margin-left: -1em;
+}
+
+.title {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.sub {
+  font-size: .7em;
+  color: #666;
 }
 
 .bold {
   font-weight: bold;
+}
+
+.icon {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.icon-skill {
+  width: 30px;
 }

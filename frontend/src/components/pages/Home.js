@@ -1,76 +1,157 @@
 import React from 'react';
 import Server from '../../api/Server';
 import newline2p from '../../helpers/newline2p';
-
-import '../../styles/Home.css';
+import capitalizeWords from '../../helpers/capitalizeWords';
 
 
 class Home extends React.Component {
-  state = { data: {}, skills: [] };
+  state = { data: {}, skills: [], experiences: [] };
+
+  skillsData = skills => {
+    const data = {};
+    let category;
+
+    skills.forEach(skill => {
+      category = capitalizeWords(skill.category.split(' ')[0] || 'other technologies');
+      if (typeof data[`${category}`] === 'undefined') {
+        data[`${category}`] = [];
+      }
+      data[`${category}`].push(skill);
+    });
+
+    return data;
+  };
 
   componentDidMount() {
-    Server.get('/api/pages/home')
-      .then(response => {
-        let skills = response.data.skills;
-        delete response.data.skills;
-        this.setState({ data: response.data, skills: skills });
+    Promise.all([
+      Server.get('/api/pages/about'),
+      Server.get('/api/experiences')
+    ])
+      .then((responses) => {
+        let skills = this.skillsData(responses[0].data.skills);
+        delete responses[0].data.skills;
+
+        this.setState({
+          data: responses[0].data,
+          skills: skills,
+          experiences: responses[1].data
+        });
       });
   }
 
-  renderIntro(data) {
+  renderContent() {
     return(
-      <div className="home-intro">
-        <h2>{data.title}</h2>
-        {newline2p(data.content)}
+      <div>
+        <h2>{this.state.data.title}</h2>
+        {newline2p(this.state.data.content)}
       </div>
     );
   }
 
-  renderSkills(skills) {
-    if (skills.length > 0) {
-      return skills.map(skill => {
+  renderSkills() {
+    if (Object.keys(this.state.skills).length > 0) {
+      return Object.keys(this.state.skills).map(category => {
         return (
-          <div key={skill.name}>
-            <div><img src={require(`../../images/${skill.image}`)} className="icon-skill" alt={skill.name} /></div>
-            <div>{skill.displayName}</div>
+          <div className="col-md-3 mb-2" key={category}>
+            <h4>{category}</h4>
+            {this.state.skills[`${category}`].map(skill => {
+              return (
+                <div key={skill.name} className="d-flex align-items-center flex-row px-2 pb-2">
+                  <img src={require(`../../images/${skill.image}`)} className="icon-skill" alt={skill.name} />
+                  <div className="skill-text pl-1">{skill.displayName}</div>
+                </div>
+              );
+            })}
           </div>
         );
       });
     }
   }
 
+  renderExperiences() {
+    const dateOptions = { month: 'long', year: 'numeric' };
+
+    if (this.state.experiences.length > 0) {
+      let fromDate, toDate;
+
+      return this.state.experiences.map(experience => {
+        fromDate = new Date(experience.from).toLocaleDateString('default', dateOptions);
+        toDate = new Date(experience.to).toLocaleDateString('default', dateOptions);
+        
+        return (
+          <div className="row mb-5" key={experience._id}>
+            <div className="col-md-3 text-nowrap">
+              <div className="title">{experience.position}</div>
+              <div className="title sub">{experience.company}</div>
+              <div className="title sub">{experience.location}</div>
+              <div className="title sub">{fromDate} - {toDate}</div>
+            </div>
+
+            <div className="col-md-9 gray-bullets">
+              <ul>{experience.description.split("\n").map((li, i) => <li key={i}>{li}</li>)}</ul>
+            </div>
+          </div>
+        );
+      });
+    }
+  }
+  
   render() {
     return(
-      <div className="main-content">
-        <div className="top-content">
-          {this.renderIntro(this.state.data)}
-          <div className="home-contact">
-            <div>
-              <div><img src={require('../../images/marker.png')} className="icon" alt="tokyo" /></div>
-              <div>Tokyo, Japan</div>
+      <div className="col-md-10 offset-md-1">
+        <div className="row">
+          <div className="col-md-12">
+            <h2 className="mb-3">{this.state.data.title}</h2>
+          </div>
+        </div>
+
+        <div className="row mb-5 justify-content-between">
+          <div className="col-md-7 mb-2">
+            {newline2p(this.state.data.content)}
+          </div>
+          
+          <div className="col-md-3">
+            <div className="d-flex align-items-center flex-row mb-3 mt-10">
+              <img src={require('../../images/marker.png')} className="icon" alt="tokyo" />
+              <div className="contact-text text-nowrap">Tokyo, Japan</div>
             </div>
-            <div>
-              <div><img src={require('../../images/email.png')} className="icon" alt="email" /></div>
-              <div><a href="http://gmail.com">christopher.alabada@gmail.com</a></div>
+            <div className="d-flex align-items-center flex-row mb-3">
+              <img src={require('../../images/email.png')} className="icon" alt="email" />
+              <div className="contact-text"><a href="http://gmail.com">chris@topher.la</a></div>
             </div>
-            <div>
-              <div><img src={require('../../images/linkedin.png')} className="icon" alt="linkedin" /></div>
-              <div><a href="http://linkedin.com">christopher.alabada</a></div>
+            <div className="d-flex align-items-center flex-row mb-3">
+              <img src={require('../../images/linkedin.png')} className="icon" alt="linkedin" />
+              <div className="contact-text"><a href="http://linkedin.com">christopher.alabada</a></div>
             </div>
-            <div>
-              <div><img src={require('../../images/github.png')} className="icon" alt="github" /></div>
-              <div><a href="http://github.com">christopher.alabada</a></div>
+            <div className="d-flex align-items-center flex-row mb-3">
+              <img src={require('../../images/github.png')} className="icon" alt="github" />
+              <div className="contact-text"><a href="http://github.com">christopher.alabada</a></div>
             </div>
           </div>
         </div>
 
-        <h2>Skills</h2>
-        <div className="home-skills">
-          {this.renderSkills(this.state.skills)}
+        <div className="row">
+          <div className="col-md-12">
+            <h2 className="mb-3">Technical Toolbox</h2>
+          </div>
         </div>
+
+        <div className="row mb-5 justify-content-between">
+          {this.renderSkills()}
+        </div>
+
+        <div className="row">
+          <div className="col-md-12">
+            <h2 className="mb-3">Experience</h2>
+          </div>
+        </div>
+
+        {this.renderExperiences()}
+        
+        
       </div>
     );
   }
-}
+};
 
 export default Home;

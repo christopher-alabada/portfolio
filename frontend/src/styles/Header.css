@@ -1,27 +1,47 @@
-.header {
-  overflow: hidden;
-  position: fixed;
-  top: 0;
-  width: calc(100vw - 100px);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 80px;
+.navbar {
   border-bottom: 1px solid #333;
-  padding: 0 50px;
-  background-color: #fff;
-  z-index: 10;
+  height: 90px;
 }
 
-.header-menu {
-  display: flex;
-  align-items: center;
-  font-size: 1.1em;
-  font-weight: 300;
+.navbar h1 a {
+  color: #000;
 }
 
-.header-menu div {
-  padding: 10px;
-  margin: 10px;
-  vertical-align: middle;
+.nav-container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media (max-width: 576px) {
+  .nav-container {
+    max-width: 570px;
+  }
+  .christopher {
+    font-size: 1.2em;
+  }
+}
+
+@media (min-width: 768px) {
+  .nav-container {
+    max-width: 625px;
+  }
+}
+
+@media (min-width: 992px) {
+  .nav-container {
+    max-width: 805px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .nav-container {
+    max-width: 960px;
+  }
 }
