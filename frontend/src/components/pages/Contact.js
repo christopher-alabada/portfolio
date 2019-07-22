@@ -1,11 +1,16 @@
 import React from 'react';
 import Server from '../../api/Server';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 
 
 class Contact extends React.Component {
-  state = { token: '', name: 'test', email: 'test', message: 'test' };
+  state = { token: '', name: '', email: '', message: '' };
 
   inputChange = event => {
+    console.log(event);
     const target = event.target;
 
     this.setState({ [target.name]: target.value });
@@ -36,41 +41,36 @@ class Contact extends React.Component {
   render() {
     console.log('render: ', this.state);
     return(
-      <div className="main-content">
-        <h2>Contact</h2>
-        <div>
-          <form>
-            <div>
-              <label>
-                Name:
-                <input
-                  type="text"
-                  name="name"
-                  value={this.state.name}
-                  onChange={this.inputChange}
-                />
-              </label>
-              <label>
-                Email:
-                <input
-                  type="text"
-                  name="email"
-                  value={this.state.email}
-                  onChange={this.inputChange}
-                />
-              </label>
-              <label>
-                Message:
-                <textarea
-                  name="message"
-                  value={this.state.message}
-                  onChange={this.inputChange}
-                />
-              </label>
-              <button onClick={this.submitForm}>Send Message</button>
-            </div>
-          </form>
+      <div className="col-md-10 offset-md-1">
+        <div className="row">
+          <div className="col-md-12">
+            <h2 className="mb-3">Contact</h2>
+          </div>
         </div>
+
+        <Form>
+          <Form.Row>
+            <Form.Group as={Col} controlId="formGridName">
+              <Form.Label>Name</Form.Label>
+              <Form.Control type="text" name="name" placeholder="What's your name?" value={this.state.name} onChange={this.inputChange} />
+            </Form.Group>
+
+            <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Label>Email</Form.Label>
+              <Form.Control type="text" name="email" placeholder="and your email?" value={this.state.email} onChange={this.inputChange} />
+            </Form.Group>
+          </Form.Row>
+
+          <Form.Row>
+            <Form.Group as={Col} controlId="formGridMessage">
+              <Form.Label>Message</Form.Label>
+              <Form.Control as="textarea" rows="3" name="message" placeholder="Say hi! 👋" value={this.state.message} onChange={this.inputChange} />
+            </Form.Group>
+          </Form.Row>
+
+          <Button onClick={this.submitForm} variant="primary">Send Message</Button>
+        </Form>
+
       </div>
     );
   }
