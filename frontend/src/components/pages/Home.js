@@ -53,7 +53,6 @@ class Home extends React.Component {
       return Object.keys(this.state.skills).map(category => {
         return (
           <div className="col-md-3 col-sm-6 mb-2" key={category}>
-            <h4>{category}</h4>
             {this.state.skills[`${category}`].map(skill => {
               return (
                 <div key={skill.name} className="d-flex align-items-center flex-row px-2 pb-2">
