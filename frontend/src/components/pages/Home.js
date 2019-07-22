@@ -12,7 +12,7 @@ class Home extends React.Component {
     let category;
 
     skills.forEach(skill => {
-      category = capitalizeWords(skill.category.split(' ')[0] || 'other technologies');
+      category = capitalizeWords(skill.category || 'other technologies');
       if (typeof data[`${category}`] === 'undefined') {
         data[`${category}`] = [];
       }
@@ -100,7 +100,7 @@ class Home extends React.Component {
       <div className="col-md-10 offset-md-1">
         <div className="row">
           <div className="col-md-12">
-            <h2 className="mb-3">{this.state.data.title}</h2>
+            <h2 className="mb-4">{this.state.data.title}</h2>
           </div>
         </div>
 
@@ -131,7 +131,7 @@ class Home extends React.Component {
 
         <div className="row">
           <div className="col-md-12">
-            <h2 className="mb-3">Technical Toolbox</h2>
+            <h2 className="mb-4">Technical Toolbox</h2>
           </div>
         </div>
 
@@ -141,7 +141,7 @@ class Home extends React.Component {
 
         <div className="row">
           <div className="col-md-12">
-            <h2 className="mb-3">Experience</h2>
+            <h2 className="mb-4">Experience</h2>
           </div>
         </div>
 
