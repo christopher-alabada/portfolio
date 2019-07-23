@@ -2,6 +2,7 @@ import React from 'react';
 import Server from '../../api/Server';
 import newline2p from '../../helpers/newline2p';
 import capitalizeWords from '../../helpers/capitalizeWords';
+import ContactForm from '../ContactForm';
 
 
 class Home extends React.Component {
@@ -146,6 +147,18 @@ class Home extends React.Component {
         </div>
 
         {this.renderExperiences()}
+
+        <div className="row">
+          <div className="col-md-12">
+            <h2 className="mb-3">Contact Me</h2>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-md-12">
+            <ContactForm />
+          </div>
+        </div>
         
         
       </div>
