@@ -1,7 +1,7 @@
 import React from 'react';
 import Server from '../../api/Server';
 import ProjectItem from '../ProjectItem';
-
+import '../../styles/projects.scss';
 
 class Projects extends React.Component {
   state = { data: [] };
@@ -28,13 +28,10 @@ class Projects extends React.Component {
       <div className="col-md-10 offset-md-1">
         <div className="row">
           <div className="col-md-12">
-            <h2 className="mb-3">Projects</h2>
+            <h2 className="mb-4">Projects</h2>
           </div>
         </div>
-        
-        
-          {this.renderProjectItems()}
-        
+        {this.renderProjectItems()}
       </div>
     );
   }
