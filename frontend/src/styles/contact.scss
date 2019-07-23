@@ -1,0 +1,12 @@
+.alert {
+  margin: 0px;
+  padding: 5px 10px;
+  font-size: .9em;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .alert {
+    margin-top: 10px;
+  }
+}
