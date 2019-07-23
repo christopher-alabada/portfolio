@@ -1,7 +1,6 @@
 import React from 'react';
 import Server from '../api/Server';
 import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
@@ -61,7 +60,7 @@ class Contact extends React.Component {
           </Form.Group>
         </Form.Row>
 
-        <Button onClick={this.submitForm} variant="primary">Send Message</Button>
+        <Button onClick={this.submitForm} variant="outline-primary">Send Message</Button>
       </Form>
     );
   }
