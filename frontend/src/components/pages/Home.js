@@ -117,15 +117,17 @@ class Home extends React.Component {
             </div>
             <div className="d-flex align-items-center flex-row mb-3">
               <img src={require('../../images/email.png')} className="icon" alt="email" />
-              <div className="contact-text"><a href="http://gmail.com">chris@topher.la</a></div>
+              <div className="contact-text">
+                <a href="mailto:chris@topher.la?subject=Message%20From%20http://chris.topher.la">chris@topher.la</a>
+              </div>
             </div>
             <div className="d-flex align-items-center flex-row mb-3">
               <img src={require('../../images/linkedin.png')} className="icon" alt="linkedin" />
-              <div className="contact-text"><a href="http://linkedin.com">christopher.alabada</a></div>
+              <div className="contact-text"><a href="https://www.linkedin.com/in/christopher-alabada/">christopher.alabada</a></div>
             </div>
             <div className="d-flex align-items-center flex-row mb-3">
               <img src={require('../../images/github.png')} className="icon" alt="github" />
-              <div className="contact-text"><a href="http://github.com">christopher.alabada</a></div>
+              <div className="contact-text"><a href="https://github.com/christopher-alabada">christopher.alabada</a></div>
             </div>
           </div>
         </div>
@@ -150,7 +152,7 @@ class Home extends React.Component {
 
         <div className="row">
           <div className="col-md-12">
-            <h2 className="mb-3">Contact Me</h2>
+            <h2 className="mb-3" id="Contact_Me">Contact Me</h2>
           </div>
         </div>
 
