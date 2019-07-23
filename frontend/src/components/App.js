@@ -22,10 +22,10 @@ const App = () => {
             <Route path="/projects" exact component={Projects} />
             <Route path="/projects/:name" exact component={Project} />
           </Switch>
+
+          <Footer />
         </div>
       </div>
-
-      <Footer />
     </Router>
   );
 };
