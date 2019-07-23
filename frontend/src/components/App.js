@@ -7,7 +7,7 @@ import Header from './Header';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
 import Project from './pages/Project';
-import Contact from './pages/Contact';
+import Footer from './Footer';
 
 
 const App = () => {
@@ -21,10 +21,11 @@ const App = () => {
             <Route path="/" exact component={Home} />
             <Route path="/projects" exact component={Projects} />
             <Route path="/projects/:name" exact component={Project} />
-            <Route path="/contact" exact component={Contact} />
           </Switch>
         </div>
       </div>
+
+      <Footer />
     </Router>
   );
 };
