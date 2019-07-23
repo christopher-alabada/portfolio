@@ -1,4 +1,5 @@
 import React from 'react';
+import PDF from '../images/Christopher_Alabada_Full-Stack_Resume.pdf';
 
 import '../styles/Header.css';
 
@@ -20,7 +21,7 @@ const Header = () => {
               <a className="nav-link" href="/projects">projects</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/contact"><div class="d-flex flex-row align-items-baseline">résumé<div className="download">&#x21E4;</div></div></a>
+              <a className="nav-link" href={PDF}>résumé</a>
             </li>
           </ul>
         </div>
