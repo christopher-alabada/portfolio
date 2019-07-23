@@ -1,5 +1,5 @@
 .navbar {
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #666;
   height: 90px;
 }
 
@@ -14,7 +14,6 @@
 }
 
 .nav-link:hover {
-  /*text-decoration: underline;*/
   color: #A61C00 !important;
 }
 
@@ -36,15 +35,6 @@
 
 .christopher a:hover {
   text-decoration: none;
-}
-
-.download {
-  font-size: 17px;
-  -moz-transform: rotate(-90deg);
-  -ms-transform: rotate(-90deg);
-  -o-transform: rotate(-90deg);
-  -webkit-transform: rotate(-90deg);
-  transform: rotate(-90deg);
 }
 
 @media (max-width: 576px) {
