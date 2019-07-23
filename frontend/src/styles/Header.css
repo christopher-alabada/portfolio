@@ -13,6 +13,11 @@
   font-size: 1.2em;
 }
 
+.nav-link:hover {
+  /*text-decoration: underline;*/
+  color: #A61C00 !important;
+}
+
 .nav-container {
     width: 100%;
     padding-right: 15px;
@@ -27,6 +32,10 @@
 
 .christopher {
   margin-top: 7px;
+}
+
+.christopher a:hover {
+  text-decoration: none;
 }
 
 @media (max-width: 576px) {
