@@ -1,6 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400|Open+Sans:600&display=swap');
 
 $font-family-sans-serif: "Lato", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default;
-$my-secondary-color: #A61C00;
+$chris-main-color: #A61C00;
+$chris-second-color: #008aa6;
 
 @import '~bootstrap/scss/bootstrap.scss';
+
+.btn-primary {
+    @include button-variant($chris-second-color, darken($chris-second-color, 7.5%), darken($chris-second-color, 10%), lighten($chris-second-color,5%), lighten($chris-second-color, 10%), darken($chris-second-color,30%));
+}
+
+.btn-outline-primary {
+    @include button-outline-variant($chris-second-color, #222222, lighten($chris-second-color,5%), $chris-second-color);
+}
