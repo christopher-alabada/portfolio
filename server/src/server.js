@@ -1,12 +1,22 @@
 const express = require('express');
+const helmet = require('helmet');
 const https = require('https');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const fs = require('fs');
 const config = require('../config');
 
+
+// Create server
+const app = express();
+
+// Server config
+app.use(helmet());
+app.use(express.json());
+app.use(cors({ credentials: true, origin: config.client.url }));
+
 // set server port from config. Use 5000 if not set
-const port = config.server.port || 5000;
+const port = config.server.port || 8080;
 
 // MongoDB Connection
 const MongoConnect = require('./database/MongoConnect');
@@ -17,14 +27,6 @@ MongoConnect(() => {
     SeedDatabase();
   }
 });
-
-
-// Create server
-const app = express();
-
-// Server config
-app.use(express.json());
-app.use(cors({ credentials: true, origin: config.client.url }));
 
 // Routes
 app.use('/api/pages', require('./routes/api/pages'));
