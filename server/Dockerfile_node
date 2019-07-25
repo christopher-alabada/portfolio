@@ -1,7 +1,7 @@
-FROM node:alpine
+FROM node:10.16-alpine
 WORKDIR /app
 COPY ./package.json ./
-RUN yarn install --production=false
+RUN yarn install
 COPY . .
 
 ## Add the wait script to the image
@@ -9,4 +9,4 @@ ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.5.1/wait
 RUN chmod +x /wait
 
 ## Launch the wait tool and then your application
-CMD /wait && yarn run dev
+CMD /wait && yarn run ${NODE_ENV}
