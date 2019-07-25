@@ -1,4 +1,4 @@
-require('dotenv').config({ path: `./.env.${process.env.NODE_ENV}` });
+require('dotenv').config();
 
 const config = {
   db: {
@@ -13,21 +13,27 @@ const config = {
     port: process.env.MONGODB_PORT
   },
   server: {
-    host: 'portfolio.dev.topher.la',
+    host: process.env.SERVER_HOSTNAME,
     port: process.env.SERVER_PORT,
     key: process.env.HTTPS_KEY,
     crt: process.env.HTTPS_CERT
   },
   client: {
-    url: 'https://portfolio.dev.topher.la:3000'
+    host: process.env.CLIENT_HOSTNAME,
+    port: process.env.CLIENT_PORT,
   },
   email: {
-    to: 'christopher.alabada@gmail.com',
-    from: 'portfolio-app@chris.topher.la'
+    to: process.env.ADMIN_EMAIL,
+    from: process.env.WEBSITE_EMAIL
   }
 };
 
-config.server.url = 'https://' + config.server.host + ":" + config.server.port;
+// Set url's
+config.server.url = process.env.URL_SCHEME + '://' + config.server.host + ":" + config.server.port;
+config.client.url = process.env.URL_SCHEME + '://' + config.client.host;
+if (config.client.port !== "80") {
+  config.client.url += ":" + config.client.port;
+}
 
 config.db.uri = [
   "mongodb://",
