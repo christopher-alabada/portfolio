@@ -1,0 +1,43 @@
+# Development Server docker-compose file
+version: '3.7'
+services:
+  # Database
+  database:
+    env_file:
+      - ./.env
+    build:
+      context: ./
+      dockerfile: Dockerfile_mongodb
+    restart: always
+    volumes:
+      - ./data/db:/data/db
+    ## In case it's buggy on macosx. Create a docker volume.
+    # volumes:
+      # - mongodb-data:/data/db
+    ports:
+      - "27017:27017"
+
+  # Server
+  node-app:
+    restart: on-failure
+    environment:
+      - WAIT_HOSTS=database:27017
+      - NODE_ENV=development
+      - COMPOSE_HTTP_TIMEOUT=200
+      - SERVER_PORT=8080
+      - CLIENT_PORT=3000
+      - MONGODB_HOST=database
+      - MONGODB_PORT=27017
+      - URL_SCHEME=https
+    build:
+      context: ./
+      dockerfile: Dockerfile_node
+    depends_on:
+      - database
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    links:
+      - database
+    ports:
+      - "8080:8080"

@@ -1,0 +1,7 @@
+# Production docker-compose file
+version: '3.7'
+services:
+  # Server
+  node-app:
+    environment:
+      - NODE_ENV=production
