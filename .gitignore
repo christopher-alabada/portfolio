@@ -1,6 +1,10 @@
 .DS_Store
 _notes.txt
 
+# Server stuff
+letsencrypt/
+nginx/
+
 # React build dierctory
 frontend/build/
 
