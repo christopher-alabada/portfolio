@@ -1,6 +1,9 @@
 .DS_Store
 _notes.txt
 
+# React build dierctory
+frontend/build/
+
 # cert directory
 .cert/
 
