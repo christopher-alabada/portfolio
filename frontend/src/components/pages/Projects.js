@@ -1,7 +1,7 @@
 import React from 'react';
 import Server from '../../api/Server';
 import ProjectItem from '../ProjectItem';
-import '../../styles/projects.scss';
+import '../../styles/projects.css';
 
 class Projects extends React.Component {
   state = { data: [] };

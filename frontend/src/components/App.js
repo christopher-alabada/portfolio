@@ -6,7 +6,6 @@ import history from '../history';
 import Header from './Header';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
-import Project from './pages/Project';
 import Footer from './Footer';
 
 
@@ -20,7 +19,6 @@ const App = () => {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/projects" exact component={Projects} />
-            <Route path="/projects/:name" exact component={Project} />
           </Switch>
 
           <Footer />

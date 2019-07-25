@@ -4,10 +4,10 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
-import '../styles/contact.scss';
+import '../styles/contact-form.css';
 
 
-class Contact extends React.Component {
+class ContactForm extends React.Component {
   // set state vars
   state = {
     token: '',
@@ -142,4 +142,4 @@ class Contact extends React.Component {
   }
 }
 
-export default Contact;
+export default ContactForm;
