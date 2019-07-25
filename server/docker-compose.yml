@@ -35,8 +35,8 @@ services:
     depends_on:
       - database
     volumes:
-      - ./:/app
-      - /app/node_modules
+      - ./:/srv/server
+      - /srv/server/node_modules
     links:
       - database
     ports:
