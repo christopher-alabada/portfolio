@@ -1,6 +1,5 @@
 const express = require('express');
 const helmet = require('helmet');
-const https = require('https');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const fs = require('fs');
@@ -45,7 +44,4 @@ app.use(function(err, req, res, next) {
 });
 
 // And finally, start server
-https.createServer({
-  key: fs.readFileSync(config.server.key),
-  cert: fs.readFileSync(config.server.crt)
-}, app).listen(port, () => console.log(`Server started on port ${port}`));
+app.listen(port, () => console.log(`Server started on port ${port}`));
