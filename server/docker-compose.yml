@@ -11,13 +11,11 @@ services:
     restart: always
     volumes:
       - ./data/db:/data/db
-    ## In case it's buggy on macosx. Create a docker volume.
-    # volumes:
-      # - mongodb-data:/data/db
     ports:
       - "27017:27017"
 
-  # Server
+
+  # App
   node-app:
     restart: on-failure
     environment:
@@ -26,11 +24,11 @@ services:
       - COMPOSE_HTTP_TIMEOUT=200
       - SERVER_PORT=8080
       - CLIENT_PORT=3000
-      - SERVER_HOSTNAME=api.chris.topher.la
+      - SERVER_HOSTNAME=localhost
       - CLIENT_HOSTNAME=www.chris.topher.la
       - MONGODB_HOST=database
       - MONGODB_PORT=27017
-      - URL_SCHEME=https
+      - URL_SCHEME=http
     build:
       context: ./
       dockerfile: Dockerfile_node
