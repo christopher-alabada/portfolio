@@ -1,0 +1,22 @@
+# Production React docker-compose file
+version: '3.7'
+services:
+  react-app:
+    build:
+      context: ./
+      dockerfile: Dockerfile.prod
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /srv/letsencrypt/dh-param/dhparam-2048.pem:/etc/ssl/certs/dhparam-2048.pem
+      - /srv/letsencrypt/docker-volumes/etc/letsencrypt/live/chris.topher.la/fullchain.pem:/etc/letsencrypt/live/chris.topher.la/fullchain.pem
+      - /srv/letsencrypt/docker-volumes/etc/letsencrypt/live/chris.topher.la/privkey.pem:/etc/letsencrypt/live/chris.topher.la/privkey.pem
+    networks:
+      - portfolio-network
+    ports:
+      - "80:80"
+      - "443:443"
+
+networks:
+  portfolio-network:
+    external: true
