@@ -20,11 +20,9 @@ const port = config.server.port || 8080;
 // MongoDB Connection
 const MongoConnect = require('./database/MongoConnect');
 MongoConnect(() => {
-  // seed if development and if not already seeded
-  if (process.env.NODE_ENV === 'development') {
-    const SeedDatabase = require('./seeds/SeedDatabase');
-    SeedDatabase();
-  }
+  // seed if not already seeded
+  const SeedDatabase = require('./seeds/SeedDatabase');
+  SeedDatabase();
 });
 
 // Routes
