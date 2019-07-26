@@ -11,25 +11,33 @@ router.use(csurf({ cookie: true }));
 
 // GET /api/contacts
 router.get('/', (req, res) => {
-  res.json({ token: req.csrfToken() });
+  if (req.get('Origin') === 'https://chris.topher.la') {
+    res.json({ token: req.csrfToken() });
+  } else {
+    res.redirect('https://chris.topher.la');
+  }
 });
 
 // POST /api/contacts
 router.post('/', (req, res) => {
-  const contact = new Contact({
-    name: req.body.name,
-    email: req.body.email,
-    message: req.body.message
-  });
+  if (req.get('Origin') === 'https://chris.topher.la') {
+    const contact = new Contact({
+      name: req.body.name,
+      email: req.body.email,
+      message: req.body.message
+    });
 
-  contact.save()
-    .then(contact => {
-      // send email
-      mailer.sendEmail()
-        .then(mailResponse => res.json({ message: ['Message saved successfully.', 'Email successfully sent.']}))
-        .catch(err => res.json({ message: ['Message saved successfully.', 'Email failed.']}));
-    })
-    .catch(err => res.json({ message: 'Something wrong.', err: err }));
+    contact.save()
+      .then(contact => {
+        // send email
+        mailer.sendEmail()
+          .then(mailResponse => res.json({ message: ['Message saved successfully.', 'Email successfully sent.']}))
+          .catch(err => res.json({ message: ['Message saved successfully.', 'Email failed.']}));
+      })
+      .catch(err => res.json({ message: 'Something wrong.', err: err }));
+  } else {
+    res.redirect('https://chris.topher.la');
+  }
 });
 
 module.exports = router;

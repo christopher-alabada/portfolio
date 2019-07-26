@@ -5,17 +5,13 @@ const Skill = require('../../models/Skill');
 
 // GET /api/projects/
 router.get('/', (req, res) => {
-  Project.find({})
+  if (req.get('Origin') === 'https://chris.topher.la') {
+    Project.find({})
     .populate('skills')
     .then(projects => res.json(projects));
-});
-
-
-// GET /api/projects/:name
-router.get('/:name', (req, res) => {
-  Project.findOne({ name: req.params.name })
-    .populate('skills')
-    .then(project => res.json(project));
+  } else {
+    res.redirect('https://chris.topher.la');
+  }
 });
 
 module.exports = router;
