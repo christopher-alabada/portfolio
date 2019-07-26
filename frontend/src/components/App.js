@@ -7,9 +7,13 @@ import Header from './Header';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
 import Footer from './Footer';
+import ReactGA from 'react-ga';
 
 
 const App = () => {
+  ReactGA.initialize('UA-20835487-1');
+  ReactGA.pageview(window.location.pathname + window.location.search);
+  
   return(
     <Router history={history}>
       <Header />
