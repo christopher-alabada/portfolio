@@ -20,7 +20,6 @@ class ContactForm extends React.Component {
 
   // Set state for each character typed
   inputChange = event => {
-    console.log(event);
     const target = event.target;
 
     this.setState({ [target.name]: target.value });
@@ -52,9 +51,7 @@ class ContactForm extends React.Component {
       _csrf: this.state.token
     };
 
-    Server.post('/api/contacts', postData)
-      .then(response => console.log('response: ', response))
-      .catch(err => console.log('err: ', err));
+    Server.post('/api/contacts', postData);
   };
 
   componentDidMount() {
@@ -75,7 +72,6 @@ class ContactForm extends React.Component {
   }
 
   render() {
-    console.log('render: ', this.state);
     return(
       <Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
         <Form.Row>
