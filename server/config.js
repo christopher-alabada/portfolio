@@ -30,7 +30,7 @@ const config = {
 
 // Set url's
 config.server.url = process.env.URL_SCHEME + '://' + config.server.host + ":" + config.server.port;
-config.client.url = process.env.URL_SCHEME + '://' + config.client.host;
+config.client.url = 'https://' + config.client.host;
 if (config.client.port !== "80") {
   config.client.url += ":" + config.client.port;
 }
