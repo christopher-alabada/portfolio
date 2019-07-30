@@ -6,6 +6,7 @@ import history from '../history';
 import Header from './Header';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
+import Page404 from './pages/Page404';
 import Footer from './Footer';
 import ReactGA from 'react-ga';
 
@@ -13,7 +14,7 @@ import ReactGA from 'react-ga';
 const App = () => {
   ReactGA.initialize('UA-20835487-1');
   ReactGA.pageview(window.location.pathname + window.location.search);
-  
+
   return(
     <Router history={history}>
       <Header />
@@ -23,6 +24,7 @@ const App = () => {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/projects" exact component={Projects} />
+            <Route component={Page404} />
           </Switch>
 
           <Footer />
