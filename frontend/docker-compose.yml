@@ -4,6 +4,7 @@ services:
   react-app:
     environment:
       - REACT_APP_API_URL=http://portfolio.dev.topher.la:8080
+      - REACT_APP_GOOGLE_ANALYTICS=${REACT_APP_GOOGLE_ANALYTICS}
     build:
       context: ./
       dockerfile: Dockerfile.dev

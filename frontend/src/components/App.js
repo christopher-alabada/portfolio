@@ -12,7 +12,7 @@ import ReactGA from 'react-ga';
 
 
 const App = () => {
-  ReactGA.initialize('UA-20835487-1');
+  ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS);
   ReactGA.pageview(window.location.pathname + window.location.search);
 
   return(
