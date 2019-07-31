@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Translates new lines in text and wraps it in a p tag
 const newline2p = (text) => {
   if (typeof text === 'string' && text.length > 0) {
     let content = [];
