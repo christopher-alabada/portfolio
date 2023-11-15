@@ -1,0 +1,22 @@
+name: "Pull Request Jobs"
+
+on:
+  pull_request:
+
+jobs:
+  get-api-url:
+    name: Get API URL
+    runs-on: ubuntu-latest
+    outputs:
+      api_url: ${{ steps.get-url.outputs.api_url }}
+    steps:
+      - name: Get URL
+        id: get-url
+        run: echo "api_url=https://$([[ \"${GITHUB_BASE_REF}\" == \"main\" ]] && echo 'dev-' || [[ \"${GITHUB_BASE_REF}\" == \"prod\" ]] && echo '' || echo ${GITHUB_BASE_REF}-)${{ vars.DOMAIN_NAME }}" >> $GITHUB_OUTPUT
+
+  pull-requests-jobs:
+    name: Pull Request Jobs
+    needs: get-api-url
+    uses: ./.github/workflows/code-checks.yaml
+    with:
+      api_url: ${{ needs.get-api-url.outputs.api_url }}

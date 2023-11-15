@@ -1,0 +1,14 @@
+name: Production Deployment
+
+on:
+  pull_request:
+    branches: [prod]
+    types: [closed]
+
+jobs:
+  prod-deployment:
+    name: Production Deployment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy Prod To Vercel
+        run: curl -s -X POST ${{ secrets.VERCEL_DEPLOY_PROD_HOOK_URL }}

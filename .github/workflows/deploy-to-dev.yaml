@@ -1,0 +1,44 @@
+name: Deploy To Dev
+
+on:
+  pull_request:
+    branches: [main]
+    types: [closed]
+
+jobs:
+  merge-main-to-dev:
+    name: Merge main to dev
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set Git config
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "Github Actions"
+      - name: Merge main to dev
+        run: |
+          git fetch --unshallow
+          git checkout dev
+          git pull
+          git merge --no-ff main -m "Auto-merge main to dev"
+          git push
+
+  dev-deployment:
+    name: Dev Deployment
+    needs: merge-main-to-dev
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dorny/paths-filter@v2
+        id: updated-files
+        with:
+          filters: |
+            workflows:
+              - "src/**"
+              - "public/**"
+      - name: Deploy Dev To Vercel
+        if: steps.updated-files.outputs.workflows == 'true'
+        run: curl -s -X POST ${{ secrets.VERCEL_DEPLOY_DEV_HOOK_URL }}
+      - name: Skipping Deployment
+        if: steps.updated-files.outputs.workflows != 'true'
+        run: echo "No code changes...Skipping deployment"

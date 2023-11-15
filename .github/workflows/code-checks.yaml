@@ -1,0 +1,40 @@
+name: Code Checks
+
+on:
+  workflow_call:
+    inputs:
+      api_url:
+        required: true
+        type: string
+
+env:
+  TF_CLOUD_ORGANIZATION: ${{ secrets.TF_ORGANIZATION }}
+  TF_API_TOKEN: ${{ secrets.TF_API_TOKEN }}
+  TF_WORKSPACE: ${{ vars.TF_WORKSPACE }}
+  CONFIG_DIRECTORY: "./_iac"
+  NEXT_PUBLIC_PORTFOLIO_API_URL: ${{ inputs.api_url }}
+  NEXT_PUBLIC_PORTFOLIO_CONTENT_PATH: ${{ vars.NEXT_PUBLIC_PORTFOLIO_CONTENT_PATH }}
+
+jobs:
+  pull-requests-jobs:
+    name: Pull Request Jobs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Yarn Install
+        id: yarn-install
+        run: yarn
+
+      - name: Build app
+        id: yarn-build
+        run: yarn build
+
+      - name: Linter
+        id: yarn-lint
+        run: yarn lint
+
+      - name: Run Tests
+        id: yarn-test
+        run: yarn test:components

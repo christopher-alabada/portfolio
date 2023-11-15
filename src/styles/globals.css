@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h2 {
+    @apply font-title font-bold italic text-black text-2xl lg:text-3xl leading-5 pb-8;
+  }
+
+  a {
+    @apply text-reddish hover:underline;
+  }
+
+  p {
+    @apply pb-5;
+  }
+}
